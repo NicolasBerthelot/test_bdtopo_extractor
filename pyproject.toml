@@ -1,0 +1,24 @@
+[project]
+name = "bdtopo-extract"
+version = "0.1.0"
+description = "Extraction à la demande de couches BD Topo (IGN) par territoire, en streaming HTTP"
+requires-python = ">=3.10"
+dependencies = [
+    "geopandas>=1.0",
+    "pyogrio>=0.9",
+    "click>=8.1",
+    "requests>=2.31",
+    "beautifulsoup4>=4.12",
+    "shapely>=2.0",
+    "streamlit>=1.38",
+]
+
+[project.scripts]
+bdtopo-extract = "bdtopo_extract.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
