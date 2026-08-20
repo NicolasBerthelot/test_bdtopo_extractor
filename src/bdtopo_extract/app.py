@@ -8,12 +8,19 @@ from __future__ import annotations
 
 import io
 import tempfile
+import unicodedata
 import zipfile
 from pathlib import Path
 
+import pandas as pd
 import streamlit as st
 
-from bdtopo_extract import catalog, extract, territoire
+from bdtopo_extract import catalog, docs, extract, territoire
+
+
+def _fold(s: str) -> str:
+    """Casefold + suppression des accents, pour une recherche insensible à la casse et aux accents."""
+    return "".join(c for c in unicodedata.normalize("NFKD", s.casefold()) if not unicodedata.combining(c))
 
 st.set_page_config(page_title="BD Topo Extract", layout="wide")
 st.title("Extraction BD Topo (IGN)")
@@ -22,6 +29,11 @@ st.title("Extraction BD Topo (IGN)")
 @st.cache_data(show_spinner="Chargement du catalogue de couches BD Topo...")
 def _get_bdtopo_layers():
     return catalog.get_catalog("bdtopo")
+
+
+@st.cache_data(show_spinner="Chargement de la documentation des couches (bdtopoexplorer.ign.fr)...")
+def _get_docs():
+    return docs.get_docs()
 
 
 @st.cache_data(show_spinner="Recherche...")
@@ -43,18 +55,69 @@ st.caption(f"Édition BD Topo : {catalog.get_edition('bdtopo')}")
 
 # --- 1. Couches ---------------------------------------------------------
 st.subheader("1. Couches")
-layer_names = sorted(layers_catalog)
-
-if "selected_layers" not in st.session_state:
-    st.session_state.selected_layers = []
+docs_map = _get_docs()
 
 
-def _toggle_all():
-    st.session_state.selected_layers = layer_names if st.session_state.select_all_cb else []
+def _build_layers_df() -> pd.DataFrame:
+    rows = [
+        {
+            "layer_id": name,
+            "Sélection": False,
+            "Couche": docs_map.get(name, {}).get("display_name") or name,
+            "Thème": docs_map.get(name, {}).get("theme") or "",
+            "Description": docs_map.get(name, {}).get("description") or "",
+            "Doc": docs_map.get(name, {}).get("url") or "",
+        }
+        for name in sorted(layers_catalog)
+    ]
+    return pd.DataFrame(rows).set_index("layer_id")
 
 
-st.checkbox("Tout sélectionner", key="select_all_cb", on_change=_toggle_all)
-selected_layers = st.multiselect("Couches à extraire", options=layer_names, key="selected_layers")
+if "layers_df" not in st.session_state:
+    st.session_state.layers_df = _build_layers_df()
+
+b1, b2, b3 = st.columns([1, 1, 4])
+if b1.button("Tout cocher"):
+    st.session_state.layers_df["Sélection"] = True
+    st.session_state.pop("layers_editor", None)
+if b2.button("Tout décocher"):
+    st.session_state.layers_df["Sélection"] = False
+    st.session_state.pop("layers_editor", None)
+filter_query = b3.text_input(
+    "Filtrer (nom, thème, description)", label_visibility="collapsed", placeholder="Filtrer (nom, thème, description)"
+)
+
+layers_view = st.session_state.layers_df
+if filter_query:
+    q = _fold(filter_query)
+    mask = (
+        layers_view["Couche"].map(_fold).str.contains(q, na=False)
+        | layers_view["Thème"].map(_fold).str.contains(q, na=False)
+        | layers_view["Description"].map(_fold).str.contains(q, na=False)
+    )
+    layers_view = layers_view[mask]
+
+edited_layers = st.data_editor(
+    layers_view,
+    key="layers_editor",
+    hide_index=True,
+    height=420,
+    use_container_width=True,
+    column_order=["Sélection", "Couche", "Thème", "Description", "Doc"],
+    column_config={
+        "Sélection": st.column_config.CheckboxColumn("Sélection"),
+        "Couche": st.column_config.TextColumn("Couche", disabled=True),
+        "Thème": st.column_config.TextColumn("Thème", disabled=True),
+        "Description": st.column_config.TextColumn("Description", disabled=True, width="large"),
+        "Doc": st.column_config.LinkColumn("Doc", display_text="↗", disabled=True),
+    },
+)
+# Ré-injecte les éditions (limitées aux lignes visibles si un filtre est actif)
+# dans la source de vérité complète, sans perdre les cases cochées hors filtre.
+st.session_state.layers_df.loc[edited_layers.index, "Sélection"] = edited_layers["Sélection"]
+
+selected_layers = st.session_state.layers_df[st.session_state.layers_df["Sélection"]].index.tolist()
+st.caption(f"{len(selected_layers)} couche(s) sélectionnée(s)")
 
 # --- 2. Territoire -------------------------------------------------------
 st.subheader("2. Territoire")
