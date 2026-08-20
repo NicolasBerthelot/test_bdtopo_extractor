@@ -1,0 +1,350 @@
+{
+  "detail_hydrographique": {
+    "display_name": "Détail hydrographique",
+    "theme": "Hydrographie",
+    "description": "Nature du détail hydrographique.",
+    "url": "https://bdtopoexplorer.ign.fr/detail_hydrographique"
+  },
+  "plan_d_eau": {
+    "display_name": "Plan d'eau",
+    "theme": "Hydrographie",
+    "description": "Une ou plusieurs étendue(s) d’eau continentale de surface, d’origine naturelle ou anthropique, possédant un toponyme ou identifiée(s) par un code hydrographique.",
+    "url": "https://bdtopoexplorer.ign.fr/plan_d_eau"
+  },
+  "terrain_de_sport": {
+    "display_name": "Terrain de sport",
+    "theme": "Bâti",
+    "description": "Équipement sportif de plein air.",
+    "url": "https://bdtopoexplorer.ign.fr/terrain_de_sport"
+  },
+  "troncon_hydrographique": {
+    "display_name": "Tronçon hydrographique",
+    "theme": "Hydrographie",
+    "description": "Axe du lit d'une rivière, d'un ruisseau ou d'un canal, homogène pour ses attributs et ses liens et n'incluant pas de confluent en dehors de ses extrémités.",
+    "url": "https://bdtopoexplorer.ign.fr/troncon_hydrographique"
+  },
+  "arrondissement_municipal": {
+    "display_name": "Arrondissement municipal",
+    "theme": "Administratif",
+    "description": "L'arrondissement municipal n'existe que pour Paris, Lyon et Marseille. Le but de la politique de décentralisation des services administratifs en 1982 consistait à rapprocher les administrations municipales du citoyen et à déconcentrer la gestion des trois plus grandes communes sans pour autant remettre en cause leur unité. La déconcentration ainsi souhaitée fut réalisée en donnant certaines compétences à un conseil et un maire élu. Ces arrondissements et leur conseil coexistent cependant avec un conseil municipal qui maintient l'unité communale de la ville. Source Insee",
+    "url": "https://bdtopoexplorer.ign.fr/arrondissement_municipal"
+  },
+  "bassin_versant_topographique": {
+    "display_name": "Bassin versant topographique",
+    "theme": "Hydrographie",
+    "description": "Aire de collecte (impluvium) considérée à partir d'un exutoire ou ensemble d'exutoires, limitée par le contour à l'intérieur duquel se rassemblent les eaux précipitées qui s'écoulent en surface vers cette sortie. Les limites peuvent être la ligne de partage des eaux des eaux superficielles.",
+    "url": "https://bdtopoexplorer.ign.fr/bassin_versant_topographique"
+  },
+  "pylone": {
+    "display_name": "Pylône",
+    "theme": "Bâti",
+    "description": "Support en charpente métallique ou en béton, d’une ligne électrique aérienne.",
+    "url": "https://bdtopoexplorer.ign.fr/pylone"
+  },
+  "collectivite_territoriale": {
+    "display_name": "Collectivité territoriale",
+    "theme": "Administratif",
+    "description": "Les collectivités territoriales sont des structures administratives françaises, distinctes de l'administration de l'État, qui doivent prendre en charge les intérêts de la population d'un territoire précis. Sont définies comme collectivités territoriales : les communes les départements auxquels s'ajoutent les cinq départements d'outre-mer (Dom) les régions auxquelles s'ajoutent également cinq régions d'outre-mer les collectivités à statut particulier les collectivités d'outre-mer (Com) Source Insee",
+    "url": "https://bdtopoexplorer.ign.fr/collectivite_territoriale"
+  },
+  "zone_d_estran": {
+    "display_name": "Zone d'estran",
+    "theme": "Occupation du sol",
+    "description": "Partie du littoral située entre les limites extrêmes des plus hautes et des plus basses marées.",
+    "url": "https://bdtopoexplorer.ign.fr/zone_d_estran"
+  },
+  "non_communication": {
+    "display_name": "Non-communication",
+    "theme": "Transport",
+    "description": "Noeud du réseau routier indiquant l'impossibilité d'accéder à un Tronçon de route ou à un enchaînement de plusieurs tronçons particuliers à partir d'un tronçon de départ donné.",
+    "url": "https://bdtopoexplorer.ign.fr/non_communication"
+  },
+  "construction_surfacique": {
+    "display_name": "Construction surfacique",
+    "theme": "Bâti",
+    "description": "Ouvrage de grande surface lié au franchissement d’un obstacle par une voie de communication, ou à l’aménagement d’une rivière ou d’un canal.",
+    "url": "https://bdtopoexplorer.ign.fr/construction_surfacique"
+  },
+  "parc_ou_reserve": {
+    "display_name": "Parc ou réserve",
+    "theme": "Zones réglementées",
+    "description": "Espace naturel protégé où certaines activités sont régies par un règlement particulier.",
+    "url": "https://bdtopoexplorer.ign.fr/parc_ou_reserve"
+  },
+  "lieu_dit_non_habite": {
+    "display_name": "Lieu-dit non habité",
+    "theme": "Lieux nommés",
+    "description": "Précise la nature d'un lieu-dit rural ne correspondant pas à une zone d'habitation.",
+    "url": "https://bdtopoexplorer.ign.fr/lieu_dit_non_habite"
+  },
+  "foret_publique": {
+    "display_name": "Forêt publique",
+    "theme": "Zones réglementées",
+    "description": "Forêt gérée par une structure publique.",
+    "url": "https://bdtopoexplorer.ign.fr/foret_publique"
+  },
+  "commune_associee_ou_deleguee": {
+    "display_name": "Commune associée ou déléguée",
+    "theme": "Administratif",
+    "description": "Commune associée : Une commune associée est une ancienne commune qui, dans le cadre d’une fusion-association entre plusieurs communes conformément aux articles L. 2113-11 et suivants du code général des collectivités territoriales dans leur rédaction antérieure à la loi n° 2010-1563 du 16 décembre 2010 de réforme des collectivités territoriales, perd sa qualité de collectivité territoriale mais conserve quelques particularités : un maire délégué, officier d'état civil et officier de police judiciaire, et susceptible de recevoir certaines délégations du maire, et une mairie annexe, qui est notamment responsable des actes d'état civil. Depuis l’entrée en vigueur de la loi de réforme des collectivités territoriales, aucune commune associée ne peut être instituée et les communes associées restantes continuent de se voir appliquer les dispositions anciennement en vigueur. Les communes associées résultent historiquement des fusions de communes permises par la loi n°71-588 du 16 juillet 1971 sur les fusions et regroupements de communes dite « loi Marcellin » . Commune déléguée : Une commune déléguée est une ancienne commune qui, dans le cadre de la création d'une commune nouvelle résultant de la fusion de plusieurs communes conformément aux articles L. 2113-2 et suivants du code général des collectivités territoriales, perd sa qualité de collectivité territoriale mais conserve quelques particularités : un maire délégué, officier d'état civil et officier de police judiciaire, et susceptible de recevoir certaines délégations du maire; et éventuellement une mairie annexe, qui est notamment responsable des actes d'état civil. Source Insee",
+    "url": "https://bdtopoexplorer.ign.fr/commune_associee_ou_deleguee"
+  },
+  "aerodrome": {
+    "display_name": "Aérodrome",
+    "theme": "Transport",
+    "description": "Tout terrain ou plan d'eau spécialement aménagé pour l'atterrissage, le décollage et les manoeuvres des aéronefs y compris les installations annexes qu'il peut comporter pour les besoins du trafic et le service des aéronefs.",
+    "url": "https://bdtopoexplorer.ign.fr/aerodrome"
+  },
+  "point_de_repere": {
+    "display_name": "Point de repère",
+    "theme": "Transport",
+    "description": "Point créé par le gestionnaire du réseau routier le long d'un Tronçon de route et utilisé pour assurer le référencement linéaire d'objets ou d’événements le long de cette route. Il est parfois matérialisé physiquement par des marques peintes associées à des bornes ou des plaquettes dites « PR » (définition du CEREMA), mais peut également être un point virtuel marquant une information sur la voie (exemple PR de début, de fin, début ou fin de section). Le PR permet de mettre en place un système de localisation sur le réseau routier.",
+    "url": "https://bdtopoexplorer.ign.fr/point_de_repere"
+  },
+  "transport_par_cable": {
+    "display_name": "Transport par câble",
+    "theme": "Transport",
+    "description": "Moyen de transport constitué d'un ou de plusieurs câbles porteurs.",
+    "url": "https://bdtopoexplorer.ign.fr/transport_par_cable"
+  },
+  "commune": {
+    "display_name": "Commune",
+    "theme": "Administratif",
+    "description": "La commune est la collectivité territoriale de base, la plus petite division administrative française. Elle est administrée par le maire. Elle exerce de nombreuses compétences en autonomie. C’est la collectivité la plus répandue sur le territoire. La commune est la subdivision administrative la plus ancienne, puisqu'elle a succédé aux villes et paroisses du Moyen Âge. Elle a été instituée en 1789 avant de connaître un début d'autonomie avec la loi du 5 avril 1884, véritable charte communale. Le maire est l'exécutif de la commune qu'il représente et dont il gère le budget. Il est l'employeur du personnel communal et exerce les compétences de proximité (écoles, urbanisme, action sociale, voirie, transports scolaires, ramassage des ordures ménagères, assainissement, etc.). Il est également agent de l'État pour les fonctions d'état civil, d'ordre public, d'organisation des élections et de délivrance de titres réglementaires. Au 1er janvier 2025, on comptait 34 875 communes, dont 34 746 en métropole et 129 en Outre-Mer. Source Insee",
+    "url": "https://bdtopoexplorer.ign.fr/commune"
+  },
+  "haie": {
+    "display_name": "Haie",
+    "theme": "Occupation du sol",
+    "description": "Axe d'une haie. La Haie est définie comme une clôture naturelle composée d’arbres, d’arbustes, d’épines ou de branchages et servant à délimiter ou à protéger un champ.",
+    "url": "https://bdtopoexplorer.ign.fr/haie"
+  },
+  "departement": {
+    "display_name": "Département",
+    "theme": "Administratif",
+    "description": "Création de la Révolution (loi du 22 décembre 1789), le département est une circonscription administrative de l’État. Le Préfet représente les différentes administrations de l’État au niveau territorial. C’est aussi, par la loi du 10 août 1871, une collectivité locale autonome avec un organe délibérant et un exécutif élus. La loi du 17 mai 2013 redéfinit l’élection des assemblées départementales, anciennement conseils généraux, appelées désormais conseils départementaux. Les cantons sont les circonscriptions qui servent de cadre à l’élection des conseils départementaux Le conseil départemental est élu pour 6 ans au suffrage universel ; il élit à son tour un président, exécutif du département qui prépare et exécute les délibérations du conseil départemental, gère le budget et dirige le personnel. Les compétences des départements sont actuellement en cours de discussion à l’Assemblée Nationale, dans le cadre de la loi portant « Nouvelle Organisation Territoriale de la République ». Depuis avril 2011, on compte 101 départements (dont 5 d'outre-mer). Un département appartient à une région et une seule. Chaque département d'outre-mer constitue à lui seul une région. Source Insee",
+    "url": "https://bdtopoexplorer.ign.fr/departement"
+  },
+  "equipement_de_transport": {
+    "display_name": "Equipement de transport",
+    "theme": "Transport",
+    "description": "Nature de l'équipement.",
+    "url": "https://bdtopoexplorer.ign.fr/equipement_de_transport"
+  },
+  "itineraire_autre": {
+    "display_name": "Itinéraire autre",
+    "theme": "Transport",
+    "description": "Itinéraire divers balisé et entretenu sur le terrain, pérenne, non labellisé par la  FFRandonnée ni par le Club Vosgien. Itinéraire référencé dans le PDIPR (Plan Départemental des Itinéraires Pédestres de Randonnée), ou par au moins un organisme officiel qui en a la compétence (office de tourisme, epci, comité départemental de la FFRandonnée).",
+    "url": "https://bdtopoexplorer.ign.fr/itineraire_autre"
+  },
+  "point_du_reseau": {
+    "display_name": "Point du réseau",
+    "theme": "Transport",
+    "description": "Nature d'un point particulier situé sur un réseau de communication.",
+    "url": "https://bdtopoexplorer.ign.fr/point_du_reseau"
+  },
+  "ligne_orographique": {
+    "display_name": "Ligne orographique",
+    "theme": "Bâti",
+    "description": "Ligne de rupture de pente artificielle généralement non maçonnée.",
+    "url": "https://bdtopoexplorer.ign.fr/ligne_orographique"
+  },
+  "erp": {
+    "display_name": "ERP",
+    "theme": "Services et activités",
+    "description": "Les établissements recevant du public (ERP) sont des bâtiments dans lesquels des personnes extérieures sont admises.",
+    "url": "https://bdtopoexplorer.ign.fr/erp"
+  },
+  "toponymie": {
+    "display_name": "Toponymie",
+    "theme": "Lieux nommés",
+    "description": "Classe de l'objet dont la toponymie est détaillée.",
+    "url": "https://bdtopoexplorer.ign.fr/toponymie"
+  },
+  "arrondissement": {
+    "display_name": "Arrondissement",
+    "theme": "Administratif",
+    "description": "L'arrondissement est une circonscription administrative de l'État dont le chef-lieu est la sous-préfecture. Le sous-préfet est chargé de son administration ; il relaie le préfet en assurant le contrôle administratif des communes de son arrondissement. Le libellé de l'arrondissement est le plus souvent celui du chef-lieu. L'arrondissement est une subdivision du département. Depuis le redécoupage cantonal lié aux élections départementales de mars 2015, l'arrondissement n’est plus un regroupement de cantons mais de communes. Source Insee",
+    "url": "https://bdtopoexplorer.ign.fr/arrondissement"
+  },
+  "noeud_hydrographique": {
+    "display_name": "Noeud hydrographique",
+    "theme": "Hydrographie",
+    "description": "Point  caractéristique situé sur les sommets du graphe hydrographique hormis la catégorie \"Franchissement\".",
+    "url": "https://bdtopoexplorer.ign.fr/noeud_hydrographique"
+  },
+  "voie_nommee": {
+    "display_name": "Voie nommée",
+    "theme": "Adresses",
+    "description": "Nom de la voie, provenant de la BAN, et porté par la voie nommée. Ce nom correspond au nom de voie BAN (gauche et/ou droite) porté par l'ensemble des tronçons de route constituant la voie nommée.",
+    "url": "https://bdtopoexplorer.ign.fr/voie_nommee"
+  },
+  "adresse_ban": {
+    "display_name": "Adresse BAN",
+    "theme": "Adresses",
+    "description": "Objet matérialisant une adresse postale. Les adresses présentes dans cette table proviennent exclusivement de la Base Adresse Nationale, la base de référence en matière d'adresses sur l'ensemble du territoire français. Ces adresses sont moissonnées à l'adresse suivante : https://adresse.data.gouv.fr/data/ban/adresses/latest/csv-bal/ Un fichier, conforme au format BAL (Base Adresse Locale) est disponible. Il contient l’ensemble des adresses, réelles et fictives, du département. Dans les cas d’une adresse définie avec plusieurs positions dans la BAN, l’ensemble des positions sont présentes dans le fichier BAL. La structure du format BAL est disponible sur le lien suivant : https://doc.adresse.data.gouv.fr/mettre-a-jour-sa-base-adresse-locale/le-format-base-adresse-locale",
+    "url": "https://bdtopoexplorer.ign.fr/adresse_ban"
+  },
+  "troncon_de_route": {
+    "display_name": "Tronçon de route",
+    "theme": "Transport",
+    "description": "Attribut permettant de classer un tronçon de route ou de chemin suivant ses caractéristiques physiques.",
+    "url": "https://bdtopoexplorer.ign.fr/troncon_de_route"
+  },
+  "cours_d_eau": {
+    "display_name": "Cours d'eau",
+    "theme": "Hydrographie",
+    "description": "Entité hydrographique linéaire nommée ou identifiée par un code hydrographique, se décomposant en Tronçon hydrographique .",
+    "url": "https://bdtopoexplorer.ign.fr/cours_d_eau"
+  },
+  "zone_de_vegetation": {
+    "display_name": "Zone de végétation",
+    "theme": "Occupation du sol",
+    "description": "Espace végétal naturel ou non, différencié en particulier selon le couvert arboré.",
+    "url": "https://bdtopoexplorer.ign.fr/zone_de_vegetation"
+  },
+  "reservoir": {
+    "display_name": "Réservoir",
+    "theme": "Bâti",
+    "description": "Réservoir (eau, matières industrielles,…)",
+    "url": "https://bdtopoexplorer.ign.fr/reservoir"
+  },
+  "piste_d_aerodrome": {
+    "display_name": "Piste d'aérodrome",
+    "theme": "Transport",
+    "description": "Aire située sur un aérodrome, aménagée afin de servir au roulement des aéronefs, à leur décollage et à leur atterrissage.",
+    "url": "https://bdtopoexplorer.ign.fr/piste_d_aerodrome"
+  },
+  "limite_terre_mer": {
+    "display_name": "Limite terre-mer",
+    "theme": "Hydrographie",
+    "description": "Ligne au niveau de laquelle une masse continentale est en contact avec une masse d'eau, inclut en particulier le trait de côte.",
+    "url": "https://bdtopoexplorer.ign.fr/limite_terre_mer"
+  },
+  "troncon_de_voie_ferree": {
+    "display_name": "Tronçon de voie ferrée",
+    "theme": "Transport",
+    "description": "Portion de voie ferrée homogène pour l'ensemble des attributs qui la concernent.",
+    "url": "https://bdtopoexplorer.ign.fr/troncon_de_voie_ferree"
+  },
+  "canalisation": {
+    "display_name": "Canalisation",
+    "theme": "Services et activités",
+    "description": "Infrastructure dédiée au transport d'hydrocarbures liquides ou gazeux ou de matières premières (tapis roulant industriel).",
+    "url": "https://bdtopoexplorer.ign.fr/canalisation"
+  },
+  "construction_lineaire": {
+    "display_name": "Construction linéaire",
+    "theme": "Bâti",
+    "description": "Construction dont la forme générale est linéaire.",
+    "url": "https://bdtopoexplorer.ign.fr/construction_lineaire"
+  },
+  "epci": {
+    "display_name": "EPCI",
+    "theme": "Administratif",
+    "description": "Les établissements publics de coopération intercommunale (EPCI)  sont des structures administratives permettant à plusieurs communes d’exercer des compétences en commun. Ils sont soumis à des règles communes, homogènes et comparables à celles de collectivités locales. Les communautés urbaines, communautés d'agglomération, communautés de communes, syndicats d'agglomération nouvelle, syndicats de communes et les syndicats mixtes sont des EPCI. Source Insee",
+    "url": "https://bdtopoexplorer.ign.fr/epci"
+  },
+  "construction_ponctuelle": {
+    "display_name": "Construction ponctuelle",
+    "theme": "Bâti",
+    "description": "Construction de faible emprise, caractérisée par sa hauteur (plus haute que large).",
+    "url": "https://bdtopoexplorer.ign.fr/construction_ponctuelle"
+  },
+  "ligne_electrique": {
+    "display_name": "Ligne électrique",
+    "theme": "Services et activités",
+    "description": "Portion de ligne électrique homogène pour l'ensemble des attributs qui la concernent.",
+    "url": "https://bdtopoexplorer.ign.fr/ligne_electrique"
+  },
+  "batiment": {
+    "display_name": "Bâtiment",
+    "theme": "Bâti",
+    "description": "Construction au-dessus du sol qui est utilisée pour abriter des humains, des animaux, des objets, pour la production de biens économiques ou pour la prestation de services et qui se réfère à toute structure construite ou érigée de façon permanente sur son site.",
+    "url": "https://bdtopoexplorer.ign.fr/batiment"
+  },
+  "section_de_points_de_repere": {
+    "display_name": "Section de points de repère",
+    "theme": "Transport",
+    "description": "Portion de route continue portant le même numéro. Les points de repères sont reliés à une section. Chaque section porte un PR de début de section (DS) et un PR de fin de section.",
+    "url": "https://bdtopoexplorer.ign.fr/section_de_points_de_repere"
+  },
+  "detail_orographique": {
+    "display_name": "Détail orographique",
+    "theme": "Lieux nommés",
+    "description": "Précise la nature du détail orographique.",
+    "url": "https://bdtopoexplorer.ign.fr/detail_orographique"
+  },
+  "point_d_acces": {
+    "display_name": "Point d'accès",
+    "theme": "Transport",
+    "description": "Point d'accès à un équipement ( Equipement de transport , Zone d'activité ou d'intérêt , ...) à partir du réseau routier.",
+    "url": "https://bdtopoexplorer.ign.fr/point_d_acces"
+  },
+  "region": {
+    "display_name": "Région",
+    "theme": "Administratif",
+    "description": "Structure la plus récente de l'administration locale française, la région est devenue collectivité territoriale à la suite des lois de décentralisation, le 16 mars 1986, date de la première élection des conseillers régionaux élus au suffrage universel; son existence a été consacrée par la révision constitutionnelle du 28 mars 2003. Les conseillers régionaux élisent le président du conseil régional qui gère le budget, dirige le personnel et conduit la politique de la région. Les compétences propres de la région concernent principalement l'aménagement du territoire, le développement  économique, la formation professionnelle, la construction ou l'entretien des lycées, les transports ferroviaires de voyageurs. Il y a en France 17 régions dont 5 d'outre-mer. La collectivité territoriale de Corse est le plus souvent assimilée à une région. Source Insee",
+    "url": "https://bdtopoexplorer.ign.fr/region"
+  },
+  "voie_ferree_nommee": {
+    "display_name": "Voie ferrée nommée",
+    "theme": "Transport",
+    "description": "Objet complexe lié aux objets Tronçon de voie ferrée qui constituent un itinéraire ou une voie ferrée nommée, touristique ou non.",
+    "url": "https://bdtopoexplorer.ign.fr/voie_ferree_nommee"
+  },
+  "route_numerotee_ou_nommee": {
+    "display_name": "Route numérotée ou nommée",
+    "theme": "Transport",
+    "description": "Voie de communication destinée aux automobiles, aux piétons, aux cycles ou aux animaux et possédant un numéro ou un nom particulier.",
+    "url": "https://bdtopoexplorer.ign.fr/route_numerotee_ou_nommee"
+  },
+  "lien_adresse_vers_bdtopo": {
+    "display_name": "Lien adresse vers BDTopo",
+    "theme": "Adresses",
+    "description": "Lien entre les adresses de la BAN et leur support BD TOPO®.",
+    "url": "https://bdtopoexplorer.ign.fr/lien_adresse_vers_bdtopo"
+  },
+  "canton": {
+    "display_name": "Canton",
+    "theme": "Administratif",
+    "description": "Le canton est la circonscription servant de cadre à l'élection des conseils départementaux, anciennement conseils généraux, définie par la loi du 17 mai 2013. Cette loi impose un redécoupage des cantons selon des critères démographiques, et leur nombre est réduit de moitié ; chacun des nouveaux cantons élit au scrutin binominal deux élus, nécessairement de sexes différents. La composition des nouveaux cantons est décrite dans des décrets publiés en février 2014. Les cantons ne sont plus nécessairement des subdivisions territoriales des arrondissements. Dans la plupart des cas, les cantons englobent plusieurs communes. Mais les cantons ne respectent pas toujours les limites communales : ils peuvent être à cheval sur plusieurs communes ou être inclus strictement dans une commune. Les premières élections des conseils départementaux, appelées « élections départementales », anciennement « élections cantonales », se sont déroulées en mars 2015. Il n'existe plus désormais de chefs-lieux de canton mais des bureaux centralisateurs, en fonction lors des élections départementales. Source Insee",
+    "url": "https://bdtopoexplorer.ign.fr/canton"
+  },
+  "poste_de_transformation": {
+    "display_name": "Poste de transformation",
+    "theme": "Services et activités",
+    "description": "Enceinte à l'intérieur de laquelle le courant transporté par une ligne électrique est transformé.",
+    "url": "https://bdtopoexplorer.ign.fr/poste_de_transformation"
+  },
+  "cimetiere": {
+    "display_name": "Cimetière",
+    "theme": "Bâti",
+    "description": "Terrain où l'on enterre les morts.",
+    "url": "https://bdtopoexplorer.ign.fr/cimetiere"
+  },
+  "zone_d_activite_ou_d_interet": {
+    "display_name": "Zone d'activité ou d'intérêt",
+    "theme": "Services et activités",
+    "description": "Attribut permettant de distinguer plusieurs types d'activités sans rentrer dans le détail de chaque nature",
+    "url": "https://bdtopoexplorer.ign.fr/zone_d_activite_ou_d_interet"
+  },
+  "condominium": {
+    "display_name": "Condominium",
+    "theme": "Administratif",
+    "description": "Zone administrative établie indépendamment de toute division administrative territoriale nationale et administrée par deux pays ou plus. En France, désigne l'Île des Faisans, sur la rivière \"la Bidassoa\", près d'Hendaye (64), de souveraineté alternative franco-espagnole.",
+    "url": "https://bdtopoexplorer.ign.fr/condominium"
+  },
+  "surface_hydrographique": {
+    "display_name": "Surface hydrographique",
+    "theme": "Hydrographie",
+    "description": "Zone  d'origine naturelle ou artificielle, temporaire ou permanente, couverte d'eau continentale de surface, douce ou salée ou couverte de glace persistante.",
+    "url": "https://bdtopoexplorer.ign.fr/surface_hydrographique"
+  },
+  "zone_d_habitation": {
+    "display_name": "Zone d'habitation",
+    "theme": "Lieux nommés",
+    "description": "Nature de la zone d'habitation",
+    "url": "https://bdtopoexplorer.ign.fr/zone_d_habitation"
+  }
+}

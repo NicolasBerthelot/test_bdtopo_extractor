@@ -76,14 +76,14 @@ def _build_layers_df() -> pd.DataFrame:
 if "layers_df" not in st.session_state:
     st.session_state.layers_df = _build_layers_df()
 
-b1, b2, b3 = st.columns([1, 1, 4])
+b1, b2, _spacer = st.columns([1, 1, 6])
 if b1.button("Tout cocher"):
     st.session_state.layers_df["Sélection"] = True
     st.session_state.pop("layers_editor", None)
 if b2.button("Tout décocher"):
     st.session_state.layers_df["Sélection"] = False
     st.session_state.pop("layers_editor", None)
-filter_query = b3.text_input(
+filter_query = st.text_input(
     "Filtrer (nom, thème, description)", label_visibility="collapsed", placeholder="Filtrer (nom, thème, description)"
 )
 

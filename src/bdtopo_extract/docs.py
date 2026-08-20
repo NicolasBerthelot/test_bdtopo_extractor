@@ -17,6 +17,10 @@ from . import catalog
 
 BASE_URL = "https://bdtopoexplorer.ign.fr"
 CACHE_FILE = catalog.CACHE_DIR / "bdtopoexplorer_docs.json"
+# Instantané embarqué dans le package (scrapé une fois, hors ligne) : bdtopoexplorer.ign.fr
+# bloque les requêtes depuis certaines infrastructures cloud (ex. Streamlit Community Cloud),
+# donc on ne dépend PAS d'un scraping réussi au démarrage pour afficher les descriptions.
+BUNDLED_FILE = Path(__file__).parent / "data" / "bdtopoexplorer_docs.json"
 
 # bdtopoexplorer.ign.fr renvoie 403 sur le User-Agent par défaut de `requests`
 # (notamment depuis des IP d'hébergeurs cloud) : on se présente comme un navigateur.
@@ -64,18 +68,22 @@ def _fetch_description(layer_name: str) -> str:
 def get_docs(force_refresh: bool = False) -> dict[str, dict]:
     """Retourne {layer_name: {display_name, theme, description, url}} pour les couches BD Topo.
 
-    Mis en cache sur disque (.cache/bdtopoexplorer_docs.json) : le scraping (58 pages)
-    ne se refait pas à chaque lancement.
+    Par défaut, utilise le cache disque (.cache/) puis l'instantané embarqué (data/) sans
+    passer par le réseau. force_refresh=True force un re-scraping de bdtopoexplorer.ign.fr
+    (à utiliser en local pour régénérer l'instantané embarqué avant de le committer).
     """
-    if not force_refresh and CACHE_FILE.exists():
-        return json.loads(CACHE_FILE.read_text(encoding="utf-8"))
+    if not force_refresh:
+        if CACHE_FILE.exists():
+            return json.loads(CACHE_FILE.read_text(encoding="utf-8"))
+        if BUNDLED_FILE.exists():
+            return json.loads(BUNDLED_FILE.read_text(encoding="utf-8"))
 
     bdtopo_layers = set(catalog.get_catalog("bdtopo"))
     try:
         index = _fetch_layer_index()
     except requests.RequestException:
-        # bdtopoexplorer.ign.fr indisponible : on continue sans documentation
-        # plutôt que de faire planter l'extraction (qui n'en dépend pas).
+        # bdtopoexplorer.ign.fr inaccessible et pas d'instantané disponible : on continue
+        # sans documentation plutôt que de faire planter l'extraction (qui n'en dépend pas).
         return {name: {"display_name": name, "theme": "", "description": "", "url": ""} for name in bdtopo_layers}
 
     docs: dict[str, dict] = {}
@@ -96,6 +104,11 @@ def get_docs(force_refresh: bool = False) -> dict[str, dict]:
             # Pas de correspondance trouvée (dérive possible entre éditions) : fallback minimal.
             docs[name] = {"display_name": name, "theme": "", "description": "", "url": ""}
 
+    payload = json.dumps(docs, ensure_ascii=False, indent=2)
     catalog.CACHE_DIR.mkdir(parents=True, exist_ok=True)
-    CACHE_FILE.write_text(json.dumps(docs, ensure_ascii=False, indent=2), encoding="utf-8")
+    CACHE_FILE.write_text(payload, encoding="utf-8")
+    if force_refresh:
+        # Régénère aussi l'instantané embarqué, à committer pour le déploiement.
+        BUNDLED_FILE.parent.mkdir(parents=True, exist_ok=True)
+        BUNDLED_FILE.write_text(payload, encoding="utf-8")
     return docs
