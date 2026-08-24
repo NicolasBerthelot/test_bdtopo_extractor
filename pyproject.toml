@@ -11,6 +11,9 @@ dependencies = [
     "beautifulsoup4>=4.12",
     "shapely>=2.0",
     "streamlit>=1.38",
+    "folium>=0.17",
+    "streamlit-folium>=0.23",
+    "streamlit-searchbox>=0.1.15",
 ]
 
 [project.scripts]

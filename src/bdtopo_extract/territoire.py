@@ -3,6 +3,8 @@ en géométries, via les couches Admin Express COG (petites, lues intégralement
 et mises en cache localement une fois par édition)."""
 from __future__ import annotations
 
+import difflib
+import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -20,6 +22,11 @@ ADMIN_LAYER_BY_KIND = {
 }
 
 
+def fold(s: str) -> str:
+    """Casefold + suppression des accents (recherche insensible casse/accents)."""
+    return "".join(c for c in unicodedata.normalize("NFKD", s.casefold()) if not unicodedata.combining(c))
+
+
 @dataclass(frozen=True)
 class Territoire:
     label: str
@@ -27,11 +34,19 @@ class Territoire:
     bbox: tuple[float, float, float, float]
 
 
+_ADMIN_GDF_MEMORY_CACHE: dict[str, gpd.GeoDataFrame] = {}
+
+
 def _admin_gdf(kind: str) -> gpd.GeoDataFrame:
+    if kind in _ADMIN_GDF_MEMORY_CACHE:
+        return _ADMIN_GDF_MEMORY_CACHE[kind]
+
     layer_name = ADMIN_LAYER_BY_KIND[kind]
     cache_path = CACHE_DIR / f"admin_{layer_name}.gpkg"
     if cache_path.exists():
-        return gpd.read_file(cache_path)
+        gdf = gpd.read_file(cache_path)
+        _ADMIN_GDF_MEMORY_CACHE[kind] = gdf
+        return gdf
 
     layers = catalog.get_catalog("admin-express-cog")
     if layer_name not in layers:
@@ -41,6 +56,7 @@ def _admin_gdf(kind: str) -> gpd.GeoDataFrame:
 
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
     gdf.to_file(cache_path, driver="GPKG")
+    _ADMIN_GDF_MEMORY_CACHE[kind] = gdf
     return gdf
 
 
@@ -51,20 +67,33 @@ def _match(gdf: gpd.GeoDataFrame, code_ou_nom: str) -> gpd.GeoDataFrame:
         matches = gdf[gdf["code_insee"].str.upper() == code_ou_nom.upper()]
         if len(matches):
             return matches
-    matches = gdf[gdf["nom_officiel"].str.casefold() == code_ou_nom.casefold()]
+
+    noms_folded = gdf["nom_officiel"].map(fold)
+    q = fold(code_ou_nom)
+
+    matches = gdf[noms_folded == q]
     if len(matches):
         return matches
-    matches = gdf[gdf["nom_officiel"].str.casefold().str.contains(code_ou_nom.casefold(), na=False)]
-    return matches
+    matches = gdf[noms_folded.str.contains(q, na=False)]
+    if len(matches):
+        return matches
+
+    # Repli tolérant aux fautes de frappe (ex. "Girond" -> "Gironde").
+    close = difflib.get_close_matches(q, noms_folded, n=15, cutoff=0.6)
+    return gdf[noms_folded.isin(close)]
 
 
-def search(kind: str, query: str | None = None) -> gpd.GeoDataFrame:
-    """Liste les territoires d'un type donné, filtrés par code ou nom (recherche partielle)."""
+def search(kind: str, query: str | None = None, limit: int | None = None) -> gpd.GeoDataFrame:
+    """Liste les territoires d'un type donné, filtrés par code ou nom (recherche partielle,
+    insensible aux accents, tolérante aux fautes de frappe). `limit` plafonne le nombre de
+    résultats (utile pour une autocomplétion)."""
     gdf = _admin_gdf(kind)
     if not query:
-        return gdf[["code_insee", "nom_officiel"]].sort_values("nom_officiel")
-    matches = _match(gdf, query)
-    return matches[["code_insee", "nom_officiel"]].sort_values("nom_officiel")
+        results = gdf[["code_insee", "nom_officiel"]].sort_values("nom_officiel")
+    else:
+        matches = _match(gdf, query)
+        results = matches[["code_insee", "nom_officiel"]].sort_values("nom_officiel")
+    return results.head(limit) if limit else results
 
 
 def resolve(kind: str, code_ou_nom: str) -> Territoire:

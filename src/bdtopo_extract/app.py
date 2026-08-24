@@ -8,19 +8,15 @@ from __future__ import annotations
 
 import io
 import tempfile
-import unicodedata
 import zipfile
 from pathlib import Path
 
 import pandas as pd
 import streamlit as st
+from streamlit_searchbox import st_searchbox
 
-from bdtopo_extract import catalog, docs, extract, territoire
-
-
-def _fold(s: str) -> str:
-    """Casefold + suppression des accents, pour une recherche insensible à la casse et aux accents."""
-    return "".join(c for c in unicodedata.normalize("NFKD", s.casefold()) if not unicodedata.combining(c))
+from bdtopo_extract import catalog, docs, extract, map_ui, territoire
+from bdtopo_extract.territoire import fold as _fold
 
 st.set_page_config(page_title="BD Topo Extract", layout="wide")
 st.title("Extraction BD Topo (IGN)")
@@ -34,12 +30,6 @@ def _get_bdtopo_layers():
 @st.cache_data(show_spinner="Chargement de la documentation des couches (bdtopoexplorer.ign.fr)...")
 def _get_docs():
     return docs.get_docs()
-
-
-@st.cache_data(show_spinner="Recherche...")
-def _search_territoire(kind: str, query: str):
-    df = territoire.search(kind, query)
-    return df.to_dict("records")
 
 
 def _zip_dir_bytes(dir_path: Path) -> bytes:
@@ -76,7 +66,8 @@ def _build_layers_df() -> pd.DataFrame:
 if "layers_df" not in st.session_state:
     st.session_state.layers_df = _build_layers_df()
 
-b1, b2, _spacer = st.columns([1, 1, 6])
+btn_group, _spacer = st.columns([1, 3])
+b1, b2 = btn_group.columns(2)
 if b1.button("Tout cocher"):
     st.session_state.layers_df["Sélection"] = True
     st.session_state.pop("layers_editor", None)
@@ -130,30 +121,63 @@ kind = st.radio(
 territoire_obj = None
 KIND_KEY = {"Région": "region", "Département": "departement", "Commune": "commune"}
 
+
+def _make_territoire_search(kind_key: str):
+    def _search(searchterm: str):
+        if not searchterm:
+            return []
+        results = territoire.search(kind_key, searchterm, limit=20)
+        return [(f"{r.nom_officiel} ({r.code_insee})", r.code_insee) for r in results.itertuples()]
+
+    return _search
+
+
 if kind == "France entière":
     st.warning("Sans filtre spatial : le volume transféré peut être important selon les couches choisies.")
 elif kind in KIND_KEY:
     kind_key = KIND_KEY[kind]
-    query = st.text_input(f"Rechercher ({kind.lower()}) — nom ou code INSEE")
-    if query:
-        results = _search_territoire(kind_key, query)
-        if results:
-            options = {f"{r['nom_officiel']} ({r['code_insee']})": r["code_insee"] for r in results}
-            choice = st.selectbox("Résultats", options=list(options.keys()))
-            if choice:
-                territoire_obj = territoire.resolve(kind_key, options[choice])
-        else:
-            st.warning("Aucun résultat.")
+    col_form, col_map = st.columns([1, 2])
+    with col_form:
+        code = st_searchbox(
+            _make_territoire_search(kind_key),
+            key=f"searchbox_{kind_key}",
+            placeholder=f"Rechercher ({kind.lower()}) — nom ou code INSEE",
+        )
+        if code:
+            try:
+                territoire_obj = territoire.resolve(kind_key, code)
+                st.caption(f"Sélectionné : {territoire_obj.label}")
+            except ValueError as exc:
+                st.error(str(exc))
+    with col_map:
+        map_ui.render_territoire_map(territoire_obj, key=f"map_{kind_key}")
 elif kind == "Bbox":
-    c1, c2, c3, c4 = st.columns(4)
-    xmin = c1.number_input("xmin", value=0.0, format="%.6f")
-    ymin = c2.number_input("ymin", value=0.0, format="%.6f")
-    xmax = c3.number_input("xmax", value=0.0, format="%.6f")
-    ymax = c4.number_input("ymax", value=0.0, format="%.6f")
-    if xmax > xmin and ymax > ymin:
-        territoire_obj = territoire.from_bbox(xmin, ymin, xmax, ymax)
-    else:
-        st.info("Renseigne une emprise valide (xmax > xmin et ymax > ymin).")
+    for bbox_key in ("bbox_xmin", "bbox_ymin", "bbox_xmax", "bbox_ymax"):
+        st.session_state.setdefault(bbox_key, 0.0)
+
+    col_form, col_map = st.columns([1, 2])
+    with col_map:
+        draw_result = map_ui.render_bbox_map(key="bbox_map")
+    drawing = draw_result.get("last_active_drawing") if draw_result else None
+    if drawing:
+        ring = drawing["geometry"]["coordinates"][0]
+        lngs, lats = [c[0] for c in ring], [c[1] for c in ring]
+        st.session_state["bbox_xmin"] = min(lngs)
+        st.session_state["bbox_ymin"] = min(lats)
+        st.session_state["bbox_xmax"] = max(lngs)
+        st.session_state["bbox_ymax"] = max(lats)
+
+    with col_form:
+        st.caption("Dessine un rectangle sur la carte, ou saisis les coordonnées (EPSG:4326).")
+        c1, c2 = st.columns(2)
+        xmin = c1.number_input("xmin", key="bbox_xmin", format="%.6f")
+        ymin = c2.number_input("ymin", key="bbox_ymin", format="%.6f")
+        xmax = c1.number_input("xmax", key="bbox_xmax", format="%.6f")
+        ymax = c2.number_input("ymax", key="bbox_ymax", format="%.6f")
+        if xmax > xmin and ymax > ymin:
+            territoire_obj = territoire.from_bbox(xmin, ymin, xmax, ymax)
+        else:
+            st.info("Renseigne une emprise valide (xmax > xmin et ymax > ymin).")
 
 # --- 3. Options ------------------------------------------------------------
 st.subheader("3. Options")
@@ -162,6 +186,9 @@ fmt = o1.selectbox("Format de sortie", ["gpkg", "shp", "geojson"])
 crs = o2.text_input("CRS de sortie (optionnel)", placeholder="EPSG:2154")
 
 # --- 4. Extraction -----------------------------------------------------
+# Le résultat est stocké dans session_state (pas juste affiché dans le bloc du bouton) :
+# des composants comme la carte peuvent déclencher des reruns en arrière-plan qui,
+# sinon, effaceraient le résultat avant que l'utilisateur ait pu le voir.
 ready = bool(selected_layers) and (kind == "France entière" or territoire_obj is not None)
 
 st.subheader("4. Extraction")
@@ -182,9 +209,7 @@ if st.button("Extraire", disabled=not ready, type="primary"):
             errors.append((name, str(exc)))
         progress.progress((i + 1) / n)
 
-    for name, msg in errors:
-        st.error(f"{name} : {msg}")
-
+    st.session_state["extraction_errors"] = errors
     if results:
         with tempfile.TemporaryDirectory() as tmp:
             out_path = extract.write_layers(results, Path(tmp), fmt=fmt)
@@ -192,9 +217,20 @@ if st.button("Extraire", disabled=not ready, type="primary"):
                 data, filename = out_path.read_bytes(), out_path.name
             else:
                 data, filename = _zip_dir_bytes(out_path), "extraction.zip"
+        st.session_state["extraction_result"] = {
+            "data": data,
+            "filename": filename,
+            "total": sum(len(g) for g in results.values()),
+        }
+    else:
+        st.session_state["extraction_result"] = None
 
-        total = sum(len(g) for g in results.values())
-        st.success(f"Extraction terminée : {total} entités au total.")
-        st.download_button("Télécharger le résultat", data=data, file_name=filename)
-    elif not errors:
-        st.warning("Aucune donnée dans le territoire demandé.")
+for name, msg in st.session_state.get("extraction_errors", []):
+    st.error(f"{name} : {msg}")
+
+result = st.session_state.get("extraction_result")
+if result:
+    st.success(f"Extraction terminée : {result['total']} entités au total.")
+    st.download_button("Télécharger le résultat", data=result["data"], file_name=result["filename"])
+elif "extraction_result" in st.session_state and not st.session_state.get("extraction_errors"):
+    st.warning("Aucune donnée dans le territoire demandé.")
