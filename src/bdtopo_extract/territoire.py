@@ -148,22 +148,31 @@ def france() -> Territoire | None:
     return None
 
 
+FRANCE_OUTLINE_FILE = Path(__file__).parent / "data" / "france_outline.geojson"
+
 _FRANCE_GEOMETRY_CACHE: Territoire | None = None
 
 
 def france_geometry() -> Territoire:
-    """Contour France entière (union de toutes les régions, y compris DROM), pour
-    affichage carte uniquement — ne pas utiliser pour filtrer une extraction (voir
-    `france()`, qui renvoie None pour ne pas imposer de découpage inutile sur un
-    territoire "France entière").
+    """Contour France entière (toutes régions, y compris DROM), pour affichage carte
+    uniquement — ne pas utiliser pour filtrer une extraction (voir `france()`, qui
+    renvoie None pour ne pas imposer de découpage inutile sur un territoire
+    "France entière").
 
-    Géométrie simplifiée avant l'union (tolérance ~1km, indolore à l'échelle du
-    pays) : l'union brute des 18 régions prend ~40s, contre ~6s simplifiée —
-    calculé une fois puis mis en cache pour le reste du run.
+    Chargé depuis un instantané embarqué (data/france_outline.geojson), calculé une
+    fois en local à partir des régions Admin Express : union des géométries BRUTES
+    (frontières exactement partagées entre régions voisines -> fusion propre), puis
+    seulement ENSUITE simplifiée pour la taille du fichier. Simplifier chaque région
+    avant l'union produit de petits trous aux frontières (chaque région simplifiée
+    indépendamment, les bords partagés ne coïncident plus exactement) — d'où l'ordre
+    important. Zéro calcul au démarrage : le fichier est chargé tel quel.
     """
     global _FRANCE_GEOMETRY_CACHE
     if _FRANCE_GEOMETRY_CACHE is None:
-        gdf = _admin_gdf("region")
-        geometry = gdf.geometry.simplify(0.01).union_all()
+        import json
+
+        from shapely.geometry import shape
+
+        geometry = shape(json.loads(FRANCE_OUTLINE_FILE.read_text(encoding="utf-8")))
         _FRANCE_GEOMETRY_CACHE = Territoire(label="France entière", geometry=geometry, bbox=geometry.bounds)
     return _FRANCE_GEOMETRY_CACHE

@@ -28,4 +28,4 @@ build-backend = "setuptools.build_meta"
 where = ["src"]
 
 [tool.setuptools.package-data]
-bdtopo_extract = ["data/*.json"]
+bdtopo_extract = ["data/*.json", "data/*.geojson"]
