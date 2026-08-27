@@ -115,6 +115,27 @@ def resolve(kind: str, code_ou_nom: str) -> Territoire:
     return Territoire(label=f"{row.nom_officiel} ({row.code_insee})", geometry=geometry, bbox=geometry.bounds)
 
 
+def union(territoires: list[Territoire]) -> Territoire | None:
+    """Fusionne plusieurs territoires (sélection multiple) en un seul : géométrie unie,
+    bbox englobante. Retourne None si la liste est vide."""
+    if not territoires:
+        return None
+    if len(territoires) == 1:
+        return territoires[0]
+
+    from shapely.ops import unary_union
+
+    geometry = unary_union([t.geometry for t in territoires])
+    xs = [t.bbox[0] for t in territoires] + [t.bbox[2] for t in territoires]
+    ys = [t.bbox[1] for t in territoires] + [t.bbox[3] for t in territoires]
+    label = (
+        ", ".join(t.label for t in territoires)
+        if len(territoires) <= 3
+        else f"{len(territoires)} territoires"
+    )
+    return Territoire(label=label, geometry=geometry, bbox=(min(xs), min(ys), max(xs), max(ys)))
+
+
 def from_bbox(xmin: float, ymin: float, xmax: float, ymax: float) -> Territoire:
     from shapely.geometry import box
 

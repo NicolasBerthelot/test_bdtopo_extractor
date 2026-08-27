@@ -114,43 +114,59 @@ st.caption(f"{len(selected_layers)} couche(s) sélectionnée(s)")
 st.subheader("2. Territoire")
 kind = st.radio(
     "Type de territoire",
-    ["France entière", "Région", "Département", "Commune", "Bbox"],
+    ["France entière", "Territoires", "Bbox"],
     horizontal=True,
 )
 
 territoire_obj = None
-KIND_KEY = {"Région": "region", "Département": "departement", "Commune": "commune"}
+TERRITOIRE_KIND_LABEL = {"region": "région", "departement": "département", "commune": "commune"}
+
+if "selected_territoires" not in st.session_state:
+    st.session_state.selected_territoires = []  # list[(kind_key, code_insee, label)]
 
 
-def _make_territoire_search(kind_key: str):
-    def _search(searchterm: str):
-        if not searchterm:
-            return []
-        results = territoire.search(kind_key, searchterm, limit=20)
-        return [(f"{r.nom_officiel} ({r.code_insee})", r.code_insee) for r in results.itertuples()]
-
-    return _search
+def _multi_kind_search(searchterm: str):
+    if len(searchterm) < 3:
+        return []
+    options = []
+    for kind_key, kind_label in TERRITOIRE_KIND_LABEL.items():
+        for r in territoire.search(kind_key, searchterm, limit=8).itertuples():
+            options.append((f"{r.nom_officiel} ({r.code_insee}) — {kind_label}", (kind_key, r.code_insee)))
+    return options
 
 
 if kind == "France entière":
     st.warning("Sans filtre spatial : le volume transféré peut être important selon les couches choisies.")
-elif kind in KIND_KEY:
-    kind_key = KIND_KEY[kind]
+elif kind == "Territoires":
     col_form, col_map = st.columns([1, 2])
     with col_form:
-        code = st_searchbox(
-            _make_territoire_search(kind_key),
-            key=f"searchbox_{kind_key}",
-            placeholder=f"Rechercher ({kind.lower()}) — nom ou code INSEE",
+        picked = st_searchbox(
+            _multi_kind_search,
+            key="territoire_searchbox",
+            placeholder="Région, département ou commune (3+ caractères)...",
+            clear_on_submit=True,
         )
-        if code:
-            try:
-                territoire_obj = territoire.resolve(kind_key, code)
-                st.caption(f"Sélectionné : {territoire_obj.label}")
-            except ValueError as exc:
-                st.error(str(exc))
+        if picked:
+            picked_kind, picked_code = picked
+            already = any(
+                k == picked_kind and c == picked_code for k, c, _ in st.session_state.selected_territoires
+            )
+            if not already:
+                t = territoire.resolve(picked_kind, picked_code)
+                st.session_state.selected_territoires.append((picked_kind, picked_code, t.label))
+
+        for i, (k, c, label) in enumerate(st.session_state.selected_territoires):
+            row_label, row_btn = st.columns([5, 1])
+            row_label.write(f"• {label} ({TERRITOIRE_KIND_LABEL[k]})")
+            if row_btn.button("✕", key=f"remove_terr_{k}_{c}"):
+                st.session_state.selected_territoires.pop(i)
+                st.rerun()
+
+    resolved = [territoire.resolve(k, c) for k, c, _ in st.session_state.selected_territoires]
+    territoire_obj = territoire.union(resolved)
+
     with col_map:
-        map_ui.render_territoire_map(territoire_obj, key=f"map_{kind_key}")
+        map_ui.render_territoire_map(territoire_obj, key="map_multi")
 elif kind == "Bbox":
     for bbox_key in ("bbox_xmin", "bbox_ymin", "bbox_xmax", "bbox_ymax"):
         st.session_state.setdefault(bbox_key, 0.0)
