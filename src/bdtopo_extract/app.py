@@ -93,8 +93,7 @@ with col_left:
     for _name in st.session_state.layers_df.index:
         st.session_state.setdefault(f"layer_cb_{_name}", bool(st.session_state.layers_df.loc[_name, "Sélection"]))
 
-    btn_group, _spacer = st.columns([1, 3])
-    b1, b2 = btn_group.columns(2)
+    b1, b2, _spacer = st.columns([1, 1, 2])
     if b1.button("Tout cocher"):
         for _name in st.session_state.layers_df.index:
             st.session_state[f"layer_cb_{_name}"] = True
