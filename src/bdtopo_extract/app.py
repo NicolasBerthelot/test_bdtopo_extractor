@@ -15,10 +15,11 @@ import pandas as pd
 import streamlit as st
 from streamlit_searchbox import st_searchbox
 
-from bdtopo_extract import catalog, docs, extract, map_ui, territoire
+from bdtopo_extract import catalog, dsfr_theme, docs, extract, map_ui, territoire
 from bdtopo_extract.territoire import fold as _fold
 
 st.set_page_config(page_title="BD Topo Extract", layout="wide")
+dsfr_theme.inject()
 st.title("Extraction BD Topo (IGN)")
 
 

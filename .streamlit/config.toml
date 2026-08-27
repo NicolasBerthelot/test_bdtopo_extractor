@@ -1,0 +1,10 @@
+[theme]
+# Charte visuelle DSFR (Système de Design de l'État) — habillage uniquement,
+# pas de conformité DSFR/RGAA complète (voir README). Valeurs reprises telles
+# quelles de la feuille de style officielle (@gouvfr/dsfr) :
+# --blue-france-sun-113-625, --grey-200-850, --grey-975-75.
+primaryColor = "#000091"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f6f6f6"
+textColor = "#3a3a3a"
+font = "sans serif"

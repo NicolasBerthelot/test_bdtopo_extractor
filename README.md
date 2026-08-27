@@ -60,6 +60,10 @@ Ouvre une page dans le navigateur avec : sélection multiple des couches, recher
 - **`territoire.py`** : résout région/département/commune via les couches Admin Express COG (mêmes principes). Les couches admin sont téléchargées intégralement une fois par édition et mises en cache localement (`.cache/admin_*.gpkg`) — la couche communes fait ~480 Mo, c'est le seul téléchargement "complet" du système, mais il ne se refait qu'au changement d'édition.
 - **`extract.py`** : pour chaque couche BD Topo demandée, lecture en flux (`pyogrio.read_dataframe(..., bbox=...)`) puis découpage exact (`geopandas.clip`) sur la géométrie du territoire.
 
+## Charte visuelle DSFR
+
+`dsfr_theme.py` habille l'interface avec la charte du Système de Design de l'État (police Marianne, bleu France `#000091`, formes de composants) via `.streamlit/config.toml` (thème natif Streamlit) et une injection CSS ciblée. C'est un **habillage visuel**, pas une conformité DSFR/RGAA complète : les composants Streamlit ne génèrent pas le HTML `.fr-*` officiel, et les composants tiers rendus dans leur propre iframe (recherche territoriale, carte) ne récupèrent pas ces styles — ils gardent l'apparence par défaut de Streamlit. Le bloc-marque officiel (logo Marianne + « RÉPUBLIQUE FRANÇAISE ») n'est volontairement pas utilisé : il est réservé aux services officiels de l'État.
+
 ## Limitations connues
 
 - Seul le format **FlatGeobuf** est utilisé comme source : le GDAL embarqué dans les wheels `pyogrio` ne compile pas le driver Parquet (nécessiterait Arrow). FlatGeobuf reste de toute façon le format recommandé par l'IGN pour l'accès en flux avec filtrage spatial.
