@@ -93,7 +93,29 @@ with col_left:
     for _name in st.session_state.layers_df.index:
         st.session_state.setdefault(f"layer_cb_{_name}", bool(st.session_state.layers_df.loc[_name, "Sélection"]))
 
-    b1, b2, _spacer = st.columns([1, 1, 2])
+    # Colonnes Streamlit = fractions proportionnelles de la largeur, toujours avec
+    # un espace résiduel après un bouton plus étroit que sa colonne. Un marqueur +
+    # CSS ciblé fait passer juste cette ligne en largeur "épouse le contenu", pour
+    # que les deux boutons soient vraiment collés plutôt que juste sur une ligne.
+    st.markdown(
+        """
+        <div id="tight-btn-row"></div>
+        <style>
+        div[data-testid="stElementContainer"]:has(#tight-btn-row)
+          + div[data-testid="stLayoutWrapper"] div[data-testid="stHorizontalBlock"] {
+            gap: 0.5rem;
+        }
+        div[data-testid="stElementContainer"]:has(#tight-btn-row)
+          + div[data-testid="stLayoutWrapper"] div[data-testid="stColumn"] {
+            flex: 0 0 auto !important;
+            width: auto !important;
+            min-width: auto !important;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+    b1, b2 = st.columns(2)
     if b1.button("Tout cocher"):
         for _name in st.session_state.layers_df.index:
             st.session_state[f"layer_cb_{_name}"] = True
