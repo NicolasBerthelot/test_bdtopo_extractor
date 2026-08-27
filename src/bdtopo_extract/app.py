@@ -33,6 +33,36 @@ THEME_STYLE = {
 }
 DEFAULT_THEME_STYLE = ("#8B8B8B", "⚪")
 
+# Aperçu carte post-extraction : plafonné pour rester léger (rendu navigateur ET
+# session_state — un gros territoire peut produire des centaines de milliers d'entités,
+# on ne veut jamais garder ça en mémoire au-delà de l'échantillon affiché).
+PREVIEW_MAX_PER_LAYER = 300
+PREVIEW_MAX_TOTAL = 3000
+
+
+def _build_preview(results: dict) -> dict:
+    """Échantillon léger et simplifié du résultat, pour l'aperçu carte uniquement —
+    jamais le contenu complet. Reprojection systématique en WGS84 (la carte l'exige,
+    indépendamment du CRS de sortie éventuellement choisi par l'utilisateur)."""
+    preview = {}
+    budget = PREVIEW_MAX_TOTAL
+    for name, gdf in results.items():
+        if budget <= 0 or len(gdf) == 0:
+            continue
+        n = min(PREVIEW_MAX_PER_LAYER, budget, len(gdf))
+        sample = gdf.iloc[:n][["geometry"]].copy()
+        if sample.crs is not None and sample.crs.to_epsg() != 4326:
+            sample = sample.to_crs(4326)
+
+        xmin, ymin, xmax, ymax = sample.total_bounds
+        diag = ((xmax - xmin) ** 2 + (ymax - ymin) ** 2) ** 0.5
+        tolerance = min(max(diag / 1500, 0.00003), 0.01)
+        sample["geometry"] = sample.geometry.simplify(tolerance, preserve_topology=True)
+
+        preview[name] = sample
+        budget -= n
+    return preview
+
 st.set_page_config(page_title="BD Topo Extract", layout="wide")
 dsfr_theme.inject()
 st.title("Extraction BD Topo (IGN)")
@@ -316,6 +346,7 @@ if st.button("Extraire", disabled=not ready, type="primary"):
 
     st.session_state["extraction_errors"] = errors
     if results:
+        st.session_state["extraction_preview"] = _build_preview(results)
         with tempfile.TemporaryDirectory() as tmp:
             out_path = extract.write_layers(results, Path(tmp), fmt=fmt)
             if out_path.is_file():
@@ -329,6 +360,7 @@ if st.button("Extraire", disabled=not ready, type="primary"):
         }
     else:
         st.session_state["extraction_result"] = None
+        st.session_state["extraction_preview"] = None
 
 for name, msg in st.session_state.get("extraction_errors", []):
     st.error(f"{name} : {msg}")
@@ -337,5 +369,17 @@ result = st.session_state.get("extraction_result")
 if result:
     st.success(f"Extraction terminée : {result['total']} entités au total.")
     st.download_button("Télécharger le résultat", data=result["data"], file_name=result["filename"])
+
+    preview = st.session_state.get("extraction_preview")
+    if preview:
+        st.subheader("Aperçu cartographique")
+        shown = sum(len(g) for g in preview.values())
+        if shown < result["total"]:
+            st.caption(
+                f"Aperçu limité à {shown} entité(s) sur {result['total']} (géométries "
+                "simplifiées, échantillon par couche) — le fichier téléchargé contient "
+                "toutes les entités. Décoche une couche dans la légende pour l'isoler."
+            )
+        map_ui.render_extraction_preview(preview, key="extraction_preview_map")
 elif "extraction_result" in st.session_state and not st.session_state.get("extraction_errors"):
     st.warning("Aucune donnée dans le territoire demandé.")
