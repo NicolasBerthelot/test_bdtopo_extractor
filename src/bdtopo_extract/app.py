@@ -257,10 +257,10 @@ if st.button("Extraire", disabled=not ready, type="primary"):
     for i, name in enumerate(selected_layers):
         status.write(f"Extraction de **{name}**...")
         try:
-            gdf = extract.extract_layer(layers_catalog[name], territoire_obj, crs=crs or None)
             layer_filters = st.session_state.layer_filters.get(name, [])
-            if layer_filters:
-                gdf = extract.apply_filters(gdf, layer_filters)
+            gdf = extract.extract_layer(
+                layers_catalog[name], territoire_obj, crs=crs or None, filters=layer_filters
+            )
             results[name] = gdf
             status.write(f"{name} : {len(gdf)} entités ({gdf.attrs.get('extract_seconds')}s)")
         except Exception as exc:  # noqa: BLE001 - on affiche l'erreur, on continue les autres couches

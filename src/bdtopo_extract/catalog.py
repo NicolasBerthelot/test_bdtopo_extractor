@@ -31,6 +31,7 @@ class LayerSource:
     name: str
     url: str
     zipped: bool  # .fgb.zip (SOZip) vs .fgb simple
+    parquet_url: str | None = None  # variante GeoParquet, si publiée pour ce dataset
 
     @property
     def vsi_path(self) -> str:
@@ -74,6 +75,17 @@ def _scrape_layers(dataset_page_path: str) -> LayerMap:
         raise RuntimeError(
             f"Aucune couche FlatGeobuf trouvée sur {page_url} — la page a peut-être changé de structure."
         )
+
+    # Deuxième passe : variante GeoParquet de chaque couche (utilisée pour les requêtes
+    # filtrées via DuckDB — élagage par bloc, y compris sur les attributs, cf. extract.py).
+    for a in soup.select('a[href$=".parquet"]'):
+        href = a["href"]
+        layer_name = href.rsplit("/", 1)[-1][: -len(".parquet")]
+        if layer_name in layers:
+            layers[layer_name] = LayerSource(
+                name=layer_name, url=layers[layer_name].url, zipped=layers[layer_name].zipped, parquet_url=href
+            )
+
     return layers
 
 
