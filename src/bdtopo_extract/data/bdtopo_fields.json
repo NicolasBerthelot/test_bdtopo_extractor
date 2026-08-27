@@ -1,0 +1,3235 @@
+{
+  "adresse_ban": [
+    {
+      "field": "source_adresse",
+      "display_name": "Source adresse",
+      "kind": "categorical",
+      "values": [
+        "arcep",
+        "cadastre",
+        "commune",
+        "inconnue",
+        "insee",
+        "laposte",
+        "sdis"
+      ]
+    }
+  ],
+  "aerodrome": [
+    {
+      "field": "categorie",
+      "display_name": "Catégorie",
+      "kind": "categorical",
+      "values": [
+        "Autre",
+        "Internationale",
+        "Nationale"
+      ]
+    },
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Altiport",
+        "Aérodrome",
+        "Hydrobase",
+        "Héliport"
+      ]
+    },
+    {
+      "field": "usage",
+      "display_name": "Usage",
+      "kind": "categorical",
+      "values": [
+        "Civil",
+        "Civil et militaire",
+        "Militaire",
+        "Privé"
+      ]
+    },
+    {
+      "field": "altitude",
+      "display_name": "Altitude",
+      "kind": "numeric",
+      "values": []
+    }
+  ],
+  "bassin_versant_topographique": [
+    {
+      "field": "origine",
+      "display_name": "Origine",
+      "kind": "categorical",
+      "values": [
+        "Artificielle",
+        "Naturelle aménagée",
+        "Naturelle non aménagée"
+      ]
+    }
+  ],
+  "batiment": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Arc de triomphe",
+        "Arène ou théâtre antique",
+        "Chapelle",
+        "Château",
+        "Eglise",
+        "Fort, blockhaus, casemate",
+        "Indifférenciée",
+        "Industriel, agricole ou commercial",
+        "Monument",
+        "Moulin à vent",
+        "Serre",
+        "Silo",
+        "Tour, donjon",
+        "Tribune"
+      ]
+    },
+    {
+      "field": "usage_1",
+      "display_name": "Usage 1",
+      "kind": "categorical",
+      "values": [
+        "Agricole",
+        "Annexe",
+        "Commercial et services",
+        "Indifférencié",
+        "Industriel",
+        "Religieux",
+        "Résidentiel",
+        "Sportif"
+      ]
+    },
+    {
+      "field": "usage_2",
+      "display_name": "Usage 2",
+      "kind": "categorical",
+      "values": [
+        "Agricole",
+        "Annexe",
+        "Commercial et services",
+        "Indifférencié",
+        "Industriel",
+        "Religieux",
+        "Résidentiel",
+        "Sportif"
+      ]
+    },
+    {
+      "field": "nombre_de_logements",
+      "display_name": "Nombre de logements",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "nombre_d_etages",
+      "display_name": "Nombre d'étages",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "hauteur",
+      "display_name": "Hauteur",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "altitude_minimale_sol",
+      "display_name": "Altitude minimale sol",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "altitude_minimale_toit",
+      "display_name": "Altitude minimale toit",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "altitude_maximale_toit",
+      "display_name": "Altitude maximale toit",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "altitude_maximale_sol",
+      "display_name": "Altitude maximale sol",
+      "kind": "numeric",
+      "values": []
+    }
+  ],
+  "canalisation": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Autres matières premières",
+        "Hydrocarbures"
+      ]
+    },
+    {
+      "field": "position_par_rapport_au_sol",
+      "display_name": "Position par rapport au sol",
+      "kind": "categorical",
+      "values": [
+        "-1",
+        "0",
+        "1"
+      ]
+    }
+  ],
+  "canton": [
+    {
+      "field": "composition_du_canton",
+      "display_name": "Composition du canton",
+      "kind": "categorical",
+      "values": [
+        "Commune(s) entière(s)",
+        "Fraction d'une commune et de commune(s) entière(s)",
+        "Fraction de commune",
+        "Fractions de plusieurs communes",
+        "Fractions de plusieurs communes et de commune(s) entière(s)",
+        "NR"
+      ]
+    }
+  ],
+  "cimetiere": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Civil",
+        "Militaire",
+        "Militaire étranger"
+      ]
+    },
+    {
+      "field": "nature_detaillee",
+      "display_name": "Nature détaillée",
+      "kind": "categorical",
+      "values": [
+        "Cimetière militaire allemand",
+        "Cimetière militaire américain",
+        "Cimetière militaire australien",
+        "Cimetière militaire britannique",
+        "Cimetière militaire canadien",
+        "Cimetière militaire chinois",
+        "Cimetière militaire danois",
+        "Cimetière militaire italien",
+        "Cimetière militaire néerlandais",
+        "Cimetière militaire polonais",
+        "Cimetière militaire portugais",
+        "Cimetière militaire roumain",
+        "Cimetière militaire russe",
+        "Cimetière militaire tchécoslovaque",
+        "Nécropole nationale"
+      ]
+    },
+    {
+      "field": "importance",
+      "display_name": "Importance",
+      "kind": "categorical",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    }
+  ],
+  "commune": [
+    {
+      "field": "superficie_cadastrale",
+      "display_name": "Superficie cadastrale",
+      "kind": "numeric",
+      "values": []
+    }
+  ],
+  "commune_associee_ou_deleguee": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Commune associée",
+        "Commune déléguée"
+      ]
+    }
+  ],
+  "construction_lineaire": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Autre ligne descriptive",
+        "Barrage",
+        "Clôture",
+        "Fronton de pelote basque",
+        "Mur",
+        "Mur anti-bruit",
+        "Mur de soutènement",
+        "Pont",
+        "Portique portuaire",
+        "Quai",
+        "Ruines",
+        "Sport de montagne",
+        "Tunnel"
+      ]
+    },
+    {
+      "field": "nature_detaillee",
+      "display_name": "Nature détaillée",
+      "kind": "categorical",
+      "values": [
+        "Aqueduc",
+        "Brise-lames",
+        "Cale",
+        "Cale réservée aux secours",
+        "Culture en terrasse",
+        "Digue",
+        "Débarcadère",
+        "Epi",
+        "Grue portuaire",
+        "Jetée",
+        "Jetée de dérivation",
+        "Mur de pierres sèches",
+        "Paravalanche",
+        "Passerelle",
+        "Piste de bobsleigh",
+        "Piste de luge",
+        "Pont isolé",
+        "Pont mobile",
+        "Pont submersible",
+        "Pont tournant",
+        "Pont transbordeur",
+        "Ponton",
+        "Pêche au carrelet",
+        "Pêcherie",
+        "Rempart",
+        "Seuil",
+        "Tranchée",
+        "Tremplin de ski",
+        "Vanne",
+        "Viaduc",
+        "Voie ferrée déposée"
+      ]
+    },
+    {
+      "field": "importance",
+      "display_name": "Importance",
+      "kind": "categorical",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    }
+  ],
+  "construction_ponctuelle": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Antenne",
+        "Autre construction élevée",
+        "Calvaire",
+        "Cheminée",
+        "Clocher",
+        "Croix",
+        "Eolienne",
+        "Minaret",
+        "Phare",
+        "Puits d'hydrocarbures",
+        "Torchère",
+        "Transformateur"
+      ]
+    },
+    {
+      "field": "nature_detaillee",
+      "display_name": "Nature détaillée",
+      "kind": "categorical",
+      "values": [
+        "Antenne-relais",
+        "Campanile",
+        "Chevalement",
+        "Mât d'éclairage",
+        "Mât de mesure",
+        "Oratoire",
+        "Puits de gaz",
+        "Puits de pétrole",
+        "Pylône de pont",
+        "Pylône météo",
+        "Radôme",
+        "Statue",
+        "Structure artificielle d'escalade",
+        "Tour de guet",
+        "Tour hertzienne",
+        "Vierge"
+      ]
+    },
+    {
+      "field": "importance",
+      "display_name": "Importance",
+      "kind": "categorical",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    {
+      "field": "hauteur",
+      "display_name": "Hauteur",
+      "kind": "numeric",
+      "values": []
+    }
+  ],
+  "construction_surfacique": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Barrage",
+        "Cale",
+        "Dalle",
+        "Ecluse",
+        "Escalier",
+        "Pont"
+      ]
+    },
+    {
+      "field": "nature_detaillee",
+      "display_name": "Nature détaillée",
+      "kind": "categorical",
+      "values": [
+        "Ascenseur à bateaux",
+        "Dalle de protection",
+        "Dalle urbaine",
+        "Pont mobile",
+        "Pont-canal",
+        "Viaduc"
+      ]
+    },
+    {
+      "field": "importance",
+      "display_name": "Importance",
+      "kind": "categorical",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    }
+  ],
+  "cours_d_eau": [
+    {
+      "field": "importance",
+      "display_name": "Importance",
+      "kind": "categorical",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    }
+  ],
+  "detail_hydrographique": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Amer",
+        "Baie",
+        "Balise",
+        "Banc",
+        "Cascade",
+        "Citerne",
+        "Embouchure",
+        "Espace maritime",
+        "Feu",
+        "Fontaine",
+        "Lavoir",
+        "Marais",
+        "Perte",
+        "Point d'eau",
+        "Prise d'eau",
+        "Résurgence",
+        "Source",
+        "Source captée"
+      ]
+    },
+    {
+      "field": "nature_detaillee",
+      "display_name": "Nature détaillée",
+      "kind": "categorical",
+      "values": [
+        "Abreuvoir",
+        "Bouée lumineuse",
+        "DFCI",
+        "Epave",
+        "Puits",
+        "Réservoir",
+        "Saut",
+        "Tourbière",
+        "Tourelle",
+        "Tourelle lumineuse"
+      ]
+    },
+    {
+      "field": "persistance",
+      "display_name": "Persistance",
+      "kind": "categorical",
+      "values": [
+        "Intermittent",
+        "Permanent"
+      ]
+    },
+    {
+      "field": "importance",
+      "display_name": "Importance",
+      "kind": "categorical",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    }
+  ],
+  "detail_orographique": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Cap",
+        "Cirque",
+        "Col",
+        "Crête",
+        "Dune",
+        "Dépression",
+        "Escarpement",
+        "Gorge",
+        "Gouffre",
+        "Grotte",
+        "Ile",
+        "Isthme",
+        "Montagne",
+        "Pic",
+        "Plage",
+        "Plaine",
+        "Rochers",
+        "Récif",
+        "Sommet",
+        "Terril",
+        "Vallée",
+        "Versant",
+        "Volcan"
+      ]
+    },
+    {
+      "field": "nature_detaillee",
+      "display_name": "Nature détaillée",
+      "kind": "categorical",
+      "values": [
+        "Ancien glacier",
+        "Atoll",
+        "Aven",
+        "Bloc rocheux isolé",
+        "Cave",
+        "Cheminée de fée",
+        "Fenêtre",
+        "Inselberg",
+        "Presqu'île"
+      ]
+    },
+    {
+      "field": "importance",
+      "display_name": "Importance",
+      "kind": "categorical",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    }
+  ],
+  "epci": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Communauté d'agglomération",
+        "Communauté de communes",
+        "Communauté urbaine",
+        "Etablissement public territorial",
+        "Métropole"
+      ]
+    }
+  ],
+  "equipement_de_transport": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Aire de repos ou de service",
+        "Aire de triage",
+        "Arrêt voyageurs",
+        "Autre équipement",
+        "Aérogare",
+        "Carrefour",
+        "Gare fret uniquement",
+        "Gare maritime",
+        "Gare routière",
+        "Gare téléphérique",
+        "Gare voyageurs et fret",
+        "Gare voyageurs uniquement",
+        "Parking",
+        "Port",
+        "Péage",
+        "Service dédié aux véhicules",
+        "Service dédié aux vélos",
+        "Station de métro",
+        "Station de tramway",
+        "Tour de contrôle aérien"
+      ]
+    },
+    {
+      "field": "nature_detaillee",
+      "display_name": "Nature détaillée",
+      "kind": "categorical",
+      "values": [
+        "Aire de camping-cars",
+        "Aire de covoiturage",
+        "Aire de repos",
+        "Aire de service",
+        "Arrêt de fret",
+        "Arrêt routier ferroviaire",
+        "Arrêt touristique saisonnier",
+        "Bassin",
+        "Borne de rechargement électrique",
+        "Dégrad",
+        "Echangeur",
+        "Echangeur complet",
+        "Echangeur partiel",
+        "Gare RER",
+        "Gare TGV",
+        "Gare funiculaire",
+        "Gare touristique saisonnière",
+        "Gare télécabine",
+        "Gare téléphérique intermédiaire",
+        "Halte fluviale",
+        "Location vélo",
+        "Parking couvert",
+        "Parking relais",
+        "Parking souterrain",
+        "Parking touristique isolé",
+        "Parking vélo",
+        "Plate-forme multimodale",
+        "Port de commerce",
+        "Port de plaisance",
+        "Port de pêche",
+        "Rond-point",
+        "Station d'auto-partage",
+        "Station de vélo en libre service",
+        "Station service"
+      ]
+    },
+    {
+      "field": "importance",
+      "display_name": "Importance",
+      "kind": "categorical",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    }
+  ],
+  "erp": [
+    {
+      "field": "categorie",
+      "display_name": "Catégorie",
+      "kind": "categorical",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    {
+      "field": "capacite_d_accueil_du_public",
+      "display_name": "Capacité d'accueil du public",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "capacite_d_hebergement",
+      "display_name": "Capacité d'hébergement",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "origine_de_la_geometrie",
+      "display_name": "Origine de la géométrie",
+      "kind": "categorical",
+      "values": [
+        "Géocodage automatique",
+        "Inconnue",
+        "Saisie manuelle"
+      ]
+    },
+    {
+      "field": "type_de_localisation",
+      "display_name": "Type de localisation",
+      "kind": "categorical",
+      "values": [
+        "Entrée pour les secours",
+        "Entrée principale du bâtiment",
+        "Plaque adresse"
+      ]
+    }
+  ],
+  "foret_publique": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Autre forêt publique",
+        "Forêt domaniale"
+      ]
+    },
+    {
+      "field": "importance",
+      "display_name": "Importance",
+      "kind": "categorical",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    }
+  ],
+  "haie": [
+    {
+      "field": "hauteur",
+      "display_name": "Hauteur",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "largeur",
+      "display_name": "Largeur",
+      "kind": "numeric",
+      "values": []
+    }
+  ],
+  "itineraire_autre": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Itinéraire cyclable",
+        "Itinéraire de randonnée pédestre",
+        "Itinéraire équestre"
+      ]
+    },
+    {
+      "field": "nature_detaillee",
+      "display_name": "Nature détaillée",
+      "kind": "categorical",
+      "values": [
+        "Itinéraire VTT",
+        "Parcours sportif",
+        "Sentier botanique",
+        "Sentier de découverte",
+        "Sentier entomologique",
+        "Sentier écologique",
+        "Voie verte"
+      ]
+    }
+  ],
+  "lien_adresse_vers_bdtopo": [
+    {
+      "field": "cote",
+      "display_name": "Côté",
+      "kind": "categorical",
+      "values": [
+        "Droit",
+        "Gauche",
+        "Indéterminé"
+      ]
+    },
+    {
+      "field": "type_lien",
+      "display_name": "Type lien",
+      "kind": "categorical",
+      "values": [
+        "Géométrique",
+        "Sémantique"
+      ]
+    }
+  ],
+  "lieu_dit_non_habite": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Arbre",
+        "Bois",
+        "Lieu-dit non habité",
+        "Pare-feu"
+      ]
+    },
+    {
+      "field": "importance",
+      "display_name": "Importance",
+      "kind": "categorical",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    }
+  ],
+  "ligne_electrique": [
+    {
+      "field": "voltage",
+      "display_name": "Voltage",
+      "kind": "categorical",
+      "values": [
+        "150 kV",
+        "225 kV",
+        "400 kV",
+        "63 kV",
+        "90 kV",
+        "<63 kV",
+        "Hors tension",
+        "Inconnue"
+      ]
+    }
+  ],
+  "ligne_orographique": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Carrière",
+        "Levée",
+        "Talus"
+      ]
+    }
+  ],
+  "limite_terre_mer": [
+    {
+      "field": "type_de_limite",
+      "display_name": "Type de limite",
+      "kind": "categorical",
+      "values": [
+        "0 NGF",
+        "Ligne de base",
+        "Limite de compétence du préfet",
+        "Limite de salure des eaux",
+        "Limite des affaires maritimes",
+        "Limite transversale de la mer"
+      ]
+    },
+    {
+      "field": "niveau",
+      "display_name": "Niveau",
+      "kind": "categorical",
+      "values": [
+        "Plus basses eaux",
+        "Plus hautes eaux"
+      ]
+    },
+    {
+      "field": "origine",
+      "display_name": "Origine",
+      "kind": "categorical",
+      "values": [
+        "Artificielle",
+        "Naturelle aménagée",
+        "Naturelle non aménagée",
+        "Naturelle rocheuse"
+      ]
+    }
+  ],
+  "noeud_hydrographique": [
+    {
+      "field": "categorie",
+      "display_name": "Catégorie",
+      "kind": "categorical",
+      "values": [
+        "Confluent",
+        "Croisement",
+        "Diffluent",
+        "Embranchement",
+        "Exutoire",
+        "Franchissement",
+        "Jonction linéaire",
+        "Source"
+      ]
+    }
+  ],
+  "parc_ou_reserve": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Arrêté de protection",
+        "Bien inscrit sur la liste du patrimoine mondial de l'UNESCO",
+        "Géoparc mondial UNESCO",
+        "Parc national",
+        "Parc naturel marin",
+        "Parc naturel régional",
+        "Réserve biologique",
+        "Réserve de biosphère",
+        "Réserve nationale de chasse et de faune sauvage",
+        "Réserve naturelle",
+        "Site Natura 2000",
+        "Site Ramsar",
+        "Site acquis ou assimilé des conservatoires d'espaces naturels",
+        "Terrain du Conservatoire du Littoral",
+        "Zone de silence",
+        "Zone naturelle"
+      ]
+    },
+    {
+      "field": "nature_detaillee",
+      "display_name": "Nature détaillée",
+      "kind": "categorical",
+      "values": [
+        "Aire d'adhésion",
+        "Arrêté de protection de biotope",
+        "Arrêté de protection de géotope",
+        "Arrêté de protection des habitats naturels",
+        "Périmètre de protection d'une réserve naturelle nationale",
+        "Périmètre de protection d'une réserve naturelle régionale",
+        "Réserve biologique dirigée",
+        "Réserve biologique intégrale",
+        "Réserve intégrale",
+        "Réserve naturelle de Corse",
+        "Réserve naturelle nationale",
+        "Réserve naturelle régionale",
+        "Site inscrit au titre de la Directive Habitats",
+        "Site inscrit au titre de la Directive Oiseaux",
+        "Zone centrale",
+        "Zone cœur",
+        "Zone de transition",
+        "Zone protégée",
+        "Zone tampon"
+      ]
+    }
+  ],
+  "piste_d_aerodrome": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Piste en dur",
+        "Piste en herbe"
+      ]
+    },
+    {
+      "field": "fonction",
+      "display_name": "Fonction",
+      "kind": "categorical",
+      "values": [
+        "Aire de circulation",
+        "Aire de stationnement",
+        "Piste d'envol",
+        "Prolongement d'arrêt"
+      ]
+    }
+  ],
+  "plan_d_eau": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Aqueduc",
+        "Canal",
+        "Conduit buse",
+        "Conduit forcé",
+        "Delta",
+        "Ecoulement canalisé",
+        "Ecoulement endoréique",
+        "Ecoulement hyporhéique",
+        "Ecoulement karstique",
+        "Ecoulement naturel",
+        "Ecoulement phréatique",
+        "Estuaire",
+        "Glacier, névé",
+        "Inconnue",
+        "Lac",
+        "Lagon",
+        "Lagune",
+        "Mangrove",
+        "Marais",
+        "Mare",
+        "Plan d'eau de gravière",
+        "Plan d'eau de mine",
+        "Ravine",
+        "Retenue",
+        "Retenue-barrage",
+        "Retenue-bassin portuaire",
+        "Retenue-digue",
+        "Réservoir-bassin",
+        "Réservoir-bassin d'orage",
+        "Réservoir-bassin piscicole"
+      ]
+    },
+    {
+      "field": "importance",
+      "display_name": "Importance",
+      "kind": "categorical",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    {
+      "field": "altitude_moyenne",
+      "display_name": "Altitude moyenne",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "mode_d_obtention_de_l_altitude_moy",
+      "display_name": "Mode d'obtention de l'altitude moy",
+      "kind": "categorical",
+      "values": [
+        "Altimétrie radar",
+        "Autres modes",
+        "Carte bathymétrique",
+        "Carte marine de navigation",
+        "Carte topographique géoréférencée",
+        "Carte topographique non géoréférencée",
+        "GPS/GNSS autonome",
+        "GPS/GNSS différentiel",
+        "Globe virtuel",
+        "Inconnu",
+        "MNT",
+        "Nivellement",
+        "Sondeur acoustique"
+      ]
+    },
+    {
+      "field": "precision_de_l_altitude_moyenne",
+      "display_name": "Précision de l'altitude moyenne",
+      "kind": "categorical",
+      "values": [
+        "Centimétrique",
+        "Décamétrique < 50 m",
+        "Décamétrique > 50 m",
+        "Décimétrique",
+        "Inconnue",
+        "Métrique < 5 m",
+        "Métrique > 5 m"
+      ]
+    },
+    {
+      "field": "hauteur_d_eau_maximale",
+      "display_name": "Hauteur d'eau maximale",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "mode_d_obtention_de_la_hauteur",
+      "display_name": "Mode d'obtention de la hauteur",
+      "kind": "categorical",
+      "values": [
+        "Cote RN",
+        "MNT"
+      ]
+    }
+  ],
+  "point_d_acces": [
+    {
+      "field": "sens",
+      "display_name": "Sens",
+      "kind": "categorical",
+      "values": [
+        "Entrée",
+        "Entrée-Sortie",
+        "Sortie"
+      ]
+    },
+    {
+      "field": "mode",
+      "display_name": "Mode",
+      "kind": "categorical",
+      "values": [
+        "Piéton",
+        "Véhicule",
+        "Véhicule et Piéton"
+      ]
+    }
+  ],
+  "point_de_repere": [
+    {
+      "field": "abscisse",
+      "display_name": "Abscisse",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "ordre",
+      "display_name": "Ordre",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "cote",
+      "display_name": "Côté",
+      "kind": "categorical",
+      "values": [
+        "D",
+        "G",
+        "U"
+      ]
+    },
+    {
+      "field": "statut",
+      "display_name": "Statut",
+      "kind": "categorical",
+      "values": [
+        "Calculé",
+        "PR valide",
+        "PR0 valide"
+      ]
+    },
+    {
+      "field": "type_de_pr",
+      "display_name": "Type de PR",
+      "kind": "categorical",
+      "values": [
+        "C",
+        "CS",
+        "DS",
+        "FS",
+        "PR",
+        "PR0",
+        "PRF"
+      ]
+    }
+  ],
+  "point_du_reseau": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Autre point du réseau",
+        "Barrière",
+        "Obstacle infranchissable",
+        "Passage à niveau",
+        "Poteau de balisage de randonnée"
+      ]
+    },
+    {
+      "field": "nature_detaillee",
+      "display_name": "Nature détaillée",
+      "kind": "categorical",
+      "values": [
+        "Barrière de douane",
+        "Gué ou radier"
+      ]
+    }
+  ],
+  "poste_de_transformation": [
+    {
+      "field": "importance",
+      "display_name": "Importance",
+      "kind": "categorical",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    }
+  ],
+  "pylone": [
+    {
+      "field": "hauteur",
+      "display_name": "Hauteur",
+      "kind": "numeric",
+      "values": []
+    }
+  ],
+  "reservoir": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Château d'eau",
+        "Inconnue",
+        "Réservoir d'eau ou château d'eau au sol",
+        "Réservoir industriel"
+      ]
+    },
+    {
+      "field": "altitude_minimale_sol",
+      "display_name": "Altitude minimale sol",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "altitude_minimale_toit",
+      "display_name": "Altitude minimale toit",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "hauteur",
+      "display_name": "Hauteur",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "altitude_maximale_toit",
+      "display_name": "Altitude maximale toit",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "altitude_maximale_sol",
+      "display_name": "Altitude maximale sol",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "volume",
+      "display_name": "Volume",
+      "kind": "numeric",
+      "values": []
+    }
+  ],
+  "route_numerotee_ou_nommee": [
+    {
+      "field": "type_de_route",
+      "display_name": "Type de route",
+      "kind": "categorical",
+      "values": [
+        "Autoroute",
+        "Bac",
+        "Chemin rural",
+        "Départementale",
+        "Liaison maritime",
+        "Nationale",
+        "Piste DFCI",
+        "Route européenne",
+        "Route intercommunale",
+        "Route nommée",
+        "Voie communale"
+      ]
+    },
+    {
+      "field": "gestionnaire",
+      "display_name": "Gestionnaire",
+      "kind": "categorical",
+      "values": [
+        "A'LIENOR",
+        "ADELAC",
+        "ALBEA",
+        "ALIAE",
+        "ALICORNE",
+        "ALIS",
+        "AMEDEA",
+        "APRR",
+        "APRR",
+        "ARCOS",
+        "ARCOUR",
+        "AREA",
+        "ASF",
+        "ASF",
+        "ATB",
+        "ATLANDES",
+        "ATMB",
+        "ATMB",
+        "ATOSCA",
+        "Ain",
+        "Aisne",
+        "Allier",
+        "Alpes-Maritimes",
+        "Alpes-de-Haute-Provence",
+        "Ancelle (05004)",
+        "Ancelle (05004)",
+        "Ardennes",
+        "Ardèche",
+        "Argol (29001)",
+        "Ariège",
+        "Armancourt (60023)",
+        "Armancourt (60023)",
+        "Arsy (60024)",
+        "Arsy (60024)",
+        "Aspremont (05008)",
+        "Aspremont (05008)",
+        "Aspres-lès-Corps (05009)",
+        "Aspres-lès-Corps (05009)",
+        "Aspres-sur-Buëch (05010)",
+        "Aspres-sur-Buëch (05010)",
+        "Attichy (60025)",
+        "Attichy (60025)",
+        "Aube",
+        "Aubessagne (05039)",
+        "Aubessagne (05039)",
+        "Aude",
+        "Autrêches (60032)",
+        "Autrêches (60032)",
+        "Auvergne-Rhône-Alpes",
+        "Avançon (05011)",
+        "Avançon (05011)",
+        "Aveyron",
+        "Aveyron",
+        "Avrigny (60036)",
+        "Avrigny (60036)",
+        "Bailleul-le-Soc (60040)",
+        "Bailleul-le-Soc (60040)",
+        "Bailly (60043)",
+        "Bailly (60043)",
+        "Barcillonnette (05013)",
+        "Barcillonnette (05013)",
+        "Bas-Rhin",
+        "Berneuil-sur-Aisne (60064)",
+        "Berneuil-sur-Aisne (60064)",
+        "Bienville (60070)",
+        "Bienville (60070)",
+        "Bitry (60072)",
+        "Bitry (60072)",
+        "Blincourt (60078)",
+        "Blincourt (60078)",
+        "Bohars (29011)",
+        "Bordeaux Métropole",
+        "Bouches-du-Rhône",
+        "Bouches-du-Rhône",
+        "Bouches-du-Rhône",
+        "Bourg-Blanc (29015)",
+        "Brest Métropole",
+        "Brive-la-Gaillarde (19031)",
+        "Brive-la-Gaillarde (19031)",
+        "Brélès (29017)",
+        "Bréziers (05022)",
+        "Bréziers (05022)",
+        "Buissard (05025)",
+        "Buissard (05025)",
+        "Béthisy-Saint-Martin (60067)",
+        "Béthisy-Saint-Martin (60067)",
+        "Béthisy-Saint-Pierre (60068)",
+        "Béthisy-Saint-Pierre (60068)",
+        "CA Plaine Vallée",
+        "CCI Seine Estuaire",
+        "CCI du Havre",
+        "CEVM",
+        "COFIROUTE",
+        "Calvados",
+        "Camaret-sur-Mer (29022)",
+        "Cambronne-lès-Ribécourt (60119)",
+        "Cambronne-lès-Ribécourt (60119)",
+        "Canly (60125)",
+        "Canly (60125)",
+        "Cantal",
+        "Carbini (2A061)",
+        "Chabestan (05028)",
+        "Chabestan (05028)",
+        "Chabottes (05029)",
+        "Chabottes (05029)",
+        "Champoléon (05032)",
+        "Champoléon (05032)",
+        "Charente",
+        "Charente-Maritime",
+        "Chelles (60145)",
+        "Chelles (60145)",
+        "Cher",
+        "Chevincourt (60147)",
+        "Chevincourt (60147)",
+        "Chevrières (60149)",
+        "Chevrières (60149)",
+        "Chiry-Ourscamp (60150)",
+        "Chiry-Ourscamp (60150)",
+        "Choisy-au-Bac (60151)",
+        "Choisy-au-Bac (60151)",
+        "Choisy-la-Victoire (60152)",
+        "Choisy-la-Victoire (60152)",
+        "Châteauneuf d’Oze (05035)",
+        "Châteauneuf d’Oze (05035)",
+        "Châteauvieux (05037)",
+        "Châteauvieux (05037)",
+        "Clairoix (60156)",
+        "Clairoix (60156)",
+        "Claret (04058)",
+        "Claret (04058)",
+        "Clermont Auvergne Métropole",
+        "Coat-Méal (29035)",
+        "Coignières (78168)",
+        "Coignières (78168)",
+        "Collectivité de Corse",
+        "Collectivité de Corse",
+        "Collectivité de Corse",
+        "Collectivité de Saint-Barthélemy",
+        "Collectivité de Saint-Martin",
+        "Collectivité de Saint-Martin",
+        "Collectivité européenne d'Alsace",
+        "Collectivité européenne d'Alsace",
+        "Collectivité européenne d'Alsace",
+        "Collectivité européenne d'Alsace",
+        "Collectivité territoriale de Guyane",
+        "Collectivité territoriale de Guyane",
+        "Collectivité territoriale de Martinique",
+        "Collectivité territoriale de Martinique",
+        "Collectivité territoriale de Martinique",
+        "Collectivité territoriale de Saint-Pierre-et-Miquelon",
+        "Compiègne (60159)",
+        "Compiègne (60159)",
+        "Conseil régional de la Guadeloupe",
+        "Corrèze",
+        "Corse-du-Sud",
+        "Couloisy (60167)",
+        "Couloisy (60167)",
+        "Courtieux (60171)",
+        "Courtieux (60171)",
+        "Creuse",
+        "Croutoy (60184)",
+        "Croutoy (60184)",
+        "Crozon (29042)",
+        "Cuise-la-Motte (60188)",
+        "Cuise-la-Motte (60188)",
+        "Curbans (04066)",
+        "Curbans (04066)",
+        "Côte-d'Or",
+        "Côte-d'Or",
+        "Côte-d'Or",
+        "Côtes-d'Armor",
+        "DEALM Mayotte",
+        "DFCI_04",
+        "DFCI_05",
+        "DFCI_06",
+        "DFCI_07",
+        "DFCI_11",
+        "DFCI_13",
+        "DFCI_24",
+        "DFCI_26",
+        "DFCI_2A",
+        "DFCI_2B",
+        "DFCI_30",
+        "DFCI_33",
+        "DFCI_34",
+        "DFCI_38",
+        "DFCI_40",
+        "DFCI_47",
+        "DFCI_48",
+        "DFCI_66",
+        "DFCI_83",
+        "DFCI_84",
+        "DFCI_86",
+        "DGTM Guyane",
+        "DIR Atlantique",
+        "DIR Atlantique",
+        "DIR Centre Est",
+        "DIR Centre Est",
+        "DIR Centre Ouest",
+        "DIR Centre Ouest",
+        "DIR Est",
+        "DIR Est",
+        "DIR Massif Central",
+        "DIR Massif Central",
+        "DIR Méditerranée",
+        "DIR Méditerranée",
+        "DIR Méditerranée",
+        "DIR Nord",
+        "DIR Nord",
+        "DIR Nord Ouest",
+        "DIR Nord Ouest",
+        "DIR Ouest",
+        "DIR Ouest",
+        "DIR Sud Ouest",
+        "DIR Sud Ouest",
+        "DIR Île-de-France",
+        "DIR Île-de-France",
+        "DTAM Saint-Pierre-et-Miquelon",
+        "Daoulas (29043)",
+        "Deux-Sèvres",
+        "Dijon Métropole",
+        "Dijon Métropole",
+        "Dijon Métropole",
+        "Dirinon (29045)",
+        "Dordogne",
+        "Doubs",
+        "Drôme",
+        "ESCOTA",
+        "Esparron (05049)",
+        "Esparron (05049)",
+        "Espinasses (05050)",
+        "Espinasses (05050)",
+        "Essonne",
+        "Essonne",
+        "Estrées-Saint-Denis (60223)",
+        "Estrées-Saint-Denis (60223)",
+        "Eure",
+        "Eure-et-Loir",
+        "Eurométropole de Strasbourg",
+        "Finistère",
+        "Forest-Saint-Julien (05056)",
+        "Forest-Saint-Julien (05056)",
+        "Fouillouse (05057)",
+        "Fouillouse (05057)",
+        "Francières (60254)",
+        "Francières (60254)",
+        "Furmeyer (05060)",
+        "Furmeyer (05060)",
+        "GPMM",
+        "Gap (05061)",
+        "Gap (05061)",
+        "Gard",
+        "Gers",
+        "Gers",
+        "Gironde",
+        "Goulven (29064)",
+        "Grand Est",
+        "Grand Est",
+        "Grandfresnoy (60284)",
+        "Grandfresnoy (60284)",
+        "Grenoble Alpes Métropole",
+        "Guadeloupe",
+        "Guipavas (29075)",
+        "Guissény (29077)",
+        "Guyancourt (78297)",
+        "Guyancourt (78297)",
+        "Hanvec (29078)",
+        "Haut-Rhin",
+        "Haute-Corse",
+        "Haute-Garonne",
+        "Haute-Garonne",
+        "Haute-Loire",
+        "Haute-Marne",
+        "Haute-Marne",
+        "Haute-Savoie",
+        "Haute-Saône",
+        "Haute-Saône",
+        "Haute-Vienne",
+        "Hautefontaine (60305)",
+        "Hautefontaine (60305)",
+        "Hautes-Alpes",
+        "Hautes-Pyrénées",
+        "Hauts-de-Seine",
+        "Houdancourt (60318)",
+        "Houdancourt (60318)",
+        "Hémévillers (60308)",
+        "Hémévillers (60308)",
+        "Hérault",
+        "Hôpital-Camfrout (29080)",
+        "Ille-et-Vilaine",
+        "Indre",
+        "Indre-et-Loire",
+        "Irvillac (29086)",
+        "Isère",
+        "Isère",
+        "Janville (60323)",
+        "Janville (60323)",
+        "Jarjayes (05068)",
+        "Jarjayes (05068)",
+        "Jaulzy (60324)",
+        "Jaulzy (60324)",
+        "Jaux (60325)",
+        "Jaux (60325)",
+        "Jonquières (60326)",
+        "Jonquières (60326)",
+        "Jura",
+        "Kerlouan (29091)",
+        "Kernilis (29093)",
+        "Kernouës (29094)",
+        "Kersaint-Plabennec (29095)",
+        "La Beaume (05019)",
+        "La Beaume (05019)",
+        "La Bâtie-Neuve (05017)",
+        "La Bâtie-Neuve (05017)",
+        "La Bâtie-Vieille (05018)",
+        "La Bâtie-Vieille (05018)",
+        "La Chapelle-en-Valgaudémar (05064)",
+        "La Chapelle-en-Valgaudémar (05064)",
+        "La Fare-en-Champsaur (05054)",
+        "La Fare-en-Champsaur (05054)",
+        "La Faurie (05055)",
+        "La Faurie (05055)",
+        "La Forest-Landerneau (29056)",
+        "La Freissinouse (05059)",
+        "La Freissinouse (05059)",
+        "La Haute Beaume (05066)",
+        "La Haute Beaume (05066)",
+        "La Martyre (29144)",
+        "La Motte-en-Champsaur (05090)",
+        "La Motte-en-Champsaur (05090)",
+        "La Roche des Arnauds (05123)",
+        "La Roche des Arnauds (05123)",
+        "La Roche-Maurice (29237)",
+        "La Rochette (05124)",
+        "La Rochette (05124)",
+        "La Saulce (05162)",
+        "La Saulce (05162)",
+        "Lachelle (60337)",
+        "Lachelle (60337)",
+        "Lacroix-Saint-Ouen (60338)",
+        "Lacroix-Saint-Ouen (60338)",
+        "Lampaul-Plouarzel (29098)",
+        "Lampaul-Ploudalmézeau (29099)",
+        "Lanarvily (29100)",
+        "Landerneau (29103)",
+        "Landes",
+        "Landunvez (29109)",
+        "Landéda (29101)",
+        "Landévennec (29104)",
+        "Lanildut (29112)",
+        "Lanneuffret (29116)",
+        "Lannilis (29117)",
+        "Lanrivoaré (29119)",
+        "Lanvéoc (29120)",
+        "Lardier-et-Valença (05071)",
+        "Lardier-et-Valença (05071)",
+        "Laye (05072)",
+        "Laye (05072)",
+        "Le Conquet (29040)",
+        "Le Devoluy (05139)",
+        "Le Devoluy (05139)",
+        "Le Drennec (29047)",
+        "Le Faou (29053)",
+        "Le Fayel (60229)",
+        "Le Fayel (60229)",
+        "Le Folgoët (29055)",
+        "Le Glaizil (05062)",
+        "Le Glaizil (05062)",
+        "Le Meux (60402)",
+        "Le Meux (60402)",
+        "Le Noyer (05095)",
+        "Le Noyer (05095)",
+        "Le Plessis-Brion (60501)",
+        "Le Plessis-Brion (60501)",
+        "Le Saix (05158)",
+        "Le Saix (05158)",
+        "Le Tréhou (29294)",
+        "Lettret (05074)",
+        "Lettret (05074)",
+        "Loc-Brévalaire (29126)",
+        "Locmaria-Plouzané (29130)",
+        "Logonna-Daoulas (29137)",
+        "Loir-et-Cher",
+        "Loire",
+        "Loire-Atlantique",
+        "Loiret",
+        "Longueil-Annel (60368)",
+        "Longueil-Annel (60368)",
+        "Longueil-Sainte-Marie (60369)",
+        "Longueil-Sainte-Marie (60369)",
+        "Loperhet (29140)",
+        "Lot",
+        "Lot",
+        "Lot-et-Garonne",
+        "Lozère",
+        "Machemont (60373)",
+        "Machemont (60373)",
+        "Magny-les-Hameaux (78356)",
+        "Magny-les-Hameaux (78356)",
+        "Maine-et-Loire",
+        "Maine-et-Loire",
+        "Manche",
+        "Manteyer (05075)",
+        "Manteyer (05075)",
+        "Marest-sur-Matz (60378)",
+        "Marest-sur-Matz (60378)",
+        "Margny-lès-Compiègne (60382)",
+        "Margny-lès-Compiègne (60382)",
+        "Marne",
+        "Maurepas (78383)",
+        "Maurepas (78383)",
+        "Mayenne",
+        "Mayenne",
+        "Mayotte",
+        "Metz Métropole",
+        "Meurthe-et-Moselle",
+        "Meuse",
+        "Milizac-Guipronvel (29076)",
+        "Montbrand (05080)",
+        "Montbrand (05080)",
+        "Montceau-les-Mines (71306)",
+        "Montgardin (05084)",
+        "Montgardin (05084)",
+        "Montmacq (60423)",
+        "Montmacq (60423)",
+        "Montmartin (60424)",
+        "Montmartin (60424)",
+        "Montmaur (05087)",
+        "Montmaur (05087)",
+        "Montpellier Méditerranée Métropole",
+        "Morbihan",
+        "Moselle",
+        "Moselle",
+        "Moselle",
+        "Moulin-sous-Touvent (60438)",
+        "Moulin-sous-Touvent (60438)",
+        "Moyvillers (60441)",
+        "Moyvillers (60441)",
+        "Mélicocq (60392)",
+        "Mélicocq (60392)",
+        "Métropole Européenne de Lille",
+        "Métropole Nice Côte d'Azur",
+        "Métropole Nice Côte d'Azur",
+        "Métropole Rouen Normandie",
+        "Métropole Toulon-Provence-Méditerranée",
+        "Métropole de Lyon",
+        "Métropole de Lyon",
+        "Métropole de Lyon",
+        "Métropole de Lyon",
+        "Métropole du Grand Nancy",
+        "Nampcel (60445)",
+        "Nampcel (60445)",
+        "Nantes Métropole",
+        "Narbonne (11262)",
+        "Narbonne (11262)",
+        "Neffes (05092)",
+        "Neffes (05092)",
+        "Nièvre",
+        "Nord",
+        "Néry (60447)",
+        "Néry (60447)",
+        "Occitanie",
+        "Occitanie",
+        "Oise",
+        "Orcières (05096)",
+        "Orcières (05096)",
+        "Orléans Métropole",
+        "Orne",
+        "Oze (05099)",
+        "Oze (05099)",
+        "Pas-de-Calais",
+        "Pelleautier (05100)",
+        "Pelleautier (05100)",
+        "Pencran (29156)",
+        "Pierrefonds (60491)",
+        "Pierrefonds (60491)",
+        "Pimprez (60492)",
+        "Pimprez (60492)",
+        "Piégut (04150)",
+        "Piégut (04150)",
+        "Plabennec (29160)",
+        "Plaisir (78490)",
+        "Plaisir (78490)",
+        "Ploudalmézeau (29178)",
+        "Ploudaniel (29179)",
+        "Ploudiry (29180)",
+        "Plougastel-Daoulas (29189)",
+        "Plougonvelin (29190)",
+        "Plouguerneau (29195)",
+        "Plouguin (29196)",
+        "Plouider (29198)",
+        "Ploumoguer (29201)",
+        "Plounéour-Brignogan-plages (29021)",
+        "Plourin (29208)",
+        "Plouvien (29209)",
+        "Plouzané (29212)",
+        "Plouédern (29181)",
+        "Poligny (05104)",
+        "Poligny (05104)",
+        "Pont-de-Buis-lès-Quimerch (29302)",
+        "Porspoder (29221)",
+        "Puy-de-Dôme",
+        "Pyrénées-Atlantiques",
+        "Pyrénées-Orientales",
+        "Pyrénées-Orientales",
+        "Rabou (05112)",
+        "Rabou (05112)",
+        "Rambaud (05113)",
+        "Rambaud (05113)",
+        "Remollon (05115)",
+        "Remollon (05115)",
+        "Remy (60531)",
+        "Remy (60531)",
+        "Rennes Métropole",
+        "Rethondes (60534)",
+        "Rethondes (60534)",
+        "Rhône",
+        "Rhône",
+        "Ribécourt-Dreslincourt (60537)",
+        "Ribécourt-Dreslincourt (60537)",
+        "Rivecourt (60540)",
+        "Rivecourt (60540)",
+        "Rochebrune (05121)",
+        "Rochebrune (05121)",
+        "Roscanvel (29238)",
+        "Rosnoën (29240)",
+        "Rousset Serre-Ponçon (05127)",
+        "Rousset Serre-Ponçon (05127)",
+        "Région Réunion",
+        "Réunion",
+        "SANEF",
+        "SAPN",
+        "SE BPNL",
+        "SFTRF",
+        "SFTRF",
+        "Saint Auban d’Oze (05131)",
+        "Saint Auban d’Oze (05131)",
+        "Saint Julien en Beauchêne (05146)",
+        "Saint Julien en Beauchêne (05146)",
+        "Saint-Bonnet-en-Champsaur (05132)",
+        "Saint-Bonnet-en-Champsaur (05132)",
+        "Saint-Crépin-aux-Bois (60569)",
+        "Saint-Crépin-aux-Bois (60569)",
+        "Saint-Divy (29245)",
+        "Saint-Eloy (29246)",
+        "Saint-Etienne Métropole",
+        "Saint-Etienne-le-Laus (05140)",
+        "Saint-Etienne-le-Laus (05140)",
+        "Saint-Firmin (05142)",
+        "Saint-Firmin (05142)",
+        "Saint-Frégant (29248)",
+        "Saint-Jacques-en-Valgodemard (05144)",
+        "Saint-Jacques-en-Valgodemard (05144)",
+        "Saint-Jean-Saint-Nicolas (05145)",
+        "Saint-Jean-Saint-Nicolas (05145)",
+        "Saint-Jean-aux-Bois (60579)",
+        "Saint-Jean-aux-Bois (60579)",
+        "Saint-Julien-en-Champsaur (05147)",
+        "Saint-Julien-en-Champsaur (05147)",
+        "Saint-Laurent-du-Cros (05148)",
+        "Saint-Laurent-du-Cros (05148)",
+        "Saint-Léger-aux-Bois (60582)",
+        "Saint-Léger-aux-Bois (60582)",
+        "Saint-Léger-les-Mélèzes (05149)",
+        "Saint-Léger-les-Mélèzes (05149)",
+        "Saint-Maurice-en-Valgodemard (05152)",
+        "Saint-Maurice-en-Valgodemard (05152)",
+        "Saint-Michel-de-Chaillol (05153)",
+        "Saint-Michel-de-Chaillol (05153)",
+        "Saint-Méen (29255)",
+        "Saint-Pabu (29257)",
+        "Saint-Pierre-d’Argençon (05154)",
+        "Saint-Pierre-d’Argençon (05154)",
+        "Saint-Pierre-lès-Bitry (60593)",
+        "Saint-Pierre-lès-Bitry (60593)",
+        "Saint-Renan (29260)",
+        "Saint-Sauveur (60597)",
+        "Saint-Sauveur (60597)",
+        "Saint-Ségal (29263)",
+        "Saint-Thonan (29268)",
+        "Saint-Urbain (29270)",
+        "Saint-Vaast-de-Longmont (60600)",
+        "Saint-Vaast-de-Longmont (60600)",
+        "Saint-Étienne-Roilaye (60572)",
+        "Saint-Étienne-Roilaye (60572)",
+        "Saintines (60578)",
+        "Saintines (60578)",
+        "Sarthe",
+        "Savoie",
+        "Saône-et-Loire",
+        "Seine-Maritime",
+        "Seine-Saint-Denis",
+        "Seine-et-Marne",
+        "Seine-et-Marne",
+        "Sigoyer (05168)",
+        "Sigoyer (05168)",
+        "Somme",
+        "Sondersdorf (68312)",
+        "Sondersdorf (68312)",
+        "Sytral",
+        "Tallard (05170)",
+        "Tallard (05170)",
+        "Tarn",
+        "Tarn-et-Garonne",
+        "Telgruc-sur-Mer (29280)",
+        "Territoire de Belfort",
+        "Théus (05171)",
+        "Théus (05171)",
+        "Toulouse Métropole",
+        "Toulouse Métropole",
+        "Toulouse Métropole",
+        "Tours Métropole Val de Loire",
+        "Tracy-le-Mont (60641)",
+        "Tracy-le-Mont (60641)",
+        "Tracy-le-Val (60642)",
+        "Tracy-le-Val (60642)",
+        "Trosly-Breuil (60647)",
+        "Trosly-Breuil (60647)",
+        "Trébabu (29282)",
+        "Tréflévénez (29286)",
+        "Trégarantec (29288)",
+        "Tréglonou (29290)",
+        "Trémaouézan (29295)",
+        "Tréouergat (29299)",
+        "Val-d'Oise",
+        "Val-de-Marne",
+        "Valserres (05176)",
+        "Valserres (05176)",
+        "Vandélicourt (60654)",
+        "Vandélicourt (60654)",
+        "Var",
+        "Vaucluse",
+        "Vaucluse",
+        "Vendée",
+        "Venette (60665)",
+        "Venette (60665)",
+        "Venterol (04234)",
+        "Venterol (04234)",
+        "Verberie (60667)",
+        "Verberie (60667)",
+        "Veynes (05179)",
+        "Veynes (05179)",
+        "Vienne",
+        "Villar-Loubière (05182)",
+        "Villar-Loubière (05182)",
+        "Ville de Paris",
+        "Ville de Paris",
+        "Vitrolles (05184)",
+        "Vitrolles (05184)",
+        "Vosges",
+        "Wallers-en-Fagne (59633)",
+        "Wallers-en-Fagne (59633)",
+        "Yonne",
+        "Yvelines",
+        "Épineuse (60210)",
+        "Épineuse (60210)"
+      ]
+    }
+  ],
+  "section_de_points_de_repere": [
+    {
+      "field": "cote",
+      "display_name": "Côté",
+      "kind": "categorical",
+      "values": [
+        "D",
+        "G",
+        "U"
+      ]
+    }
+  ],
+  "surface_hydrographique": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Aqueduc",
+        "Canal",
+        "Conduit buse",
+        "Conduit forcé",
+        "Delta",
+        "Ecoulement canalisé",
+        "Ecoulement endoréique",
+        "Ecoulement hyporhéique",
+        "Ecoulement karstique",
+        "Ecoulement naturel",
+        "Ecoulement phréatique",
+        "Estuaire",
+        "Glacier, névé",
+        "Inconnue",
+        "Lac",
+        "Lagon",
+        "Lagune",
+        "Mangrove",
+        "Marais",
+        "Mare",
+        "Plan d'eau de gravière",
+        "Plan d'eau de mine",
+        "Ravine",
+        "Retenue",
+        "Retenue-barrage",
+        "Retenue-bassin portuaire",
+        "Retenue-digue",
+        "Réservoir-bassin",
+        "Réservoir-bassin d'orage",
+        "Réservoir-bassin piscicole"
+      ]
+    },
+    {
+      "field": "position_par_rapport_au_sol",
+      "display_name": "Position par rapport au sol",
+      "kind": "categorical",
+      "values": [
+        "-1",
+        "0",
+        "1"
+      ]
+    },
+    {
+      "field": "persistance",
+      "display_name": "Persistance",
+      "kind": "categorical",
+      "values": [
+        "Ephémère",
+        "Inconnue",
+        "Intermittent",
+        "Permanent",
+        "Sec"
+      ]
+    },
+    {
+      "field": "origine",
+      "display_name": "Origine",
+      "kind": "categorical",
+      "values": [
+        "Artificielle",
+        "Inconnue",
+        "Naturelle aménagée",
+        "Naturelle non aménagée"
+      ]
+    }
+  ],
+  "terrain_de_sport": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Bassin de natation",
+        "Carrière équestre",
+        "Grand terrain de sport",
+        "Petit terrain multi-sports",
+        "Piste de sport",
+        "Terrain de tennis"
+      ]
+    },
+    {
+      "field": "nature_detaillee",
+      "display_name": "Nature détaillée",
+      "kind": "categorical",
+      "values": [
+        "City-stade",
+        "Piste d'hippodrome",
+        "Piste de cynodrome",
+        "Piste de sports mécaniques",
+        "Piste de vélodrome",
+        "Stade d'athlétisme",
+        "Terrain de basket-ball",
+        "Terrain de football",
+        "Terrain de handball",
+        "Terrain de padel",
+        "Terrain de pelote basque",
+        "Terrain de polo",
+        "Terrain de rugby",
+        "Terrain de volley-ball"
+      ]
+    }
+  ],
+  "transport_par_cable": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Autre remontée mécanique",
+        "Câble transporteur",
+        "Tapis roulant de stations de montagne",
+        "Tyrolienne géante",
+        "Télécabine, téléphérique",
+        "Télésiège",
+        "Téléski"
+      ]
+    },
+    {
+      "field": "importance",
+      "display_name": "Importance",
+      "kind": "categorical",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    }
+  ],
+  "troncon_de_route": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Bac ou liaison maritime",
+        "Bretelle",
+        "Chemin",
+        "Escalier",
+        "Rond-point",
+        "Route empierrée",
+        "Route à 1 chaussée",
+        "Route à 2 chaussées",
+        "Sentier",
+        "Type autoroutier"
+      ]
+    },
+    {
+      "field": "importance",
+      "display_name": "Importance",
+      "kind": "categorical",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    {
+      "field": "position_par_rapport_au_sol",
+      "display_name": "Position par rapport au sol",
+      "kind": "categorical",
+      "values": [
+        "-1",
+        "-2",
+        "-3",
+        "-4",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "Gué ou radier"
+      ]
+    },
+    {
+      "field": "nombre_de_voies",
+      "display_name": "Nombre de voies",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "largeur_de_chaussee",
+      "display_name": "Largeur de chaussée",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "sens_de_circulation",
+      "display_name": "Sens de circulation",
+      "kind": "categorical",
+      "values": [
+        "Double sens",
+        "Sans objet",
+        "Sens direct",
+        "Sens inverse"
+      ]
+    },
+    {
+      "field": "reserve_aux_bus",
+      "display_name": "Réservé aux bus",
+      "kind": "categorical",
+      "values": [
+        "Double sens",
+        "Sens direct",
+        "Sens inverse"
+      ]
+    },
+    {
+      "field": "vitesse_moyenne_vl",
+      "display_name": "Vitesse moyenne VL",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "acces_vehicule_leger",
+      "display_name": "Accès véhicule léger",
+      "kind": "categorical",
+      "values": [
+        "A péage",
+        "Libre",
+        "Physiquement impossible",
+        "Restreint aux ayants droit"
+      ]
+    },
+    {
+      "field": "acces_pieton",
+      "display_name": "Accès piéton",
+      "kind": "categorical",
+      "values": [
+        "A péage",
+        "Libre",
+        "Passage difficile",
+        "Restreint aux ayants droit"
+      ]
+    },
+    {
+      "field": "nature_de_la_restriction",
+      "display_name": "Nature de la restriction",
+      "kind": "categorical",
+      "values": [
+        "Aménagement mixte hors voie verte",
+        "Chaussée à voie centrale banalisée",
+        "Double sens cyclable non matérialisé",
+        "Entrée avec gardien",
+        "Interdit à la descente",
+        "Passage barré",
+        "Piste cyclable",
+        "Plot amovible",
+        "Voie de tramway utilisable par les véhicules de secours",
+        "Voie verte",
+        "Vélorue"
+      ]
+    },
+    {
+      "field": "restriction_de_hauteur",
+      "display_name": "Restriction de hauteur",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "restriction_de_poids_total",
+      "display_name": "Restriction de poids total",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "restriction_de_poids_par_essieu",
+      "display_name": "Restriction de poids par essieu",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "restriction_de_largeur",
+      "display_name": "Restriction de largeur",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "restriction_de_longueur",
+      "display_name": "Restriction de longueur",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "sens_amenagement_cyclable_gauche",
+      "display_name": "Sens aménagement cyclable gauche",
+      "kind": "categorical",
+      "values": [
+        "Double sens",
+        "Sens direct",
+        "Sens inverse"
+      ]
+    },
+    {
+      "field": "sens_amenagement_cyclable_droit",
+      "display_name": "Sens aménagement cyclable droit",
+      "kind": "categorical",
+      "values": [
+        "Double sens",
+        "Sens direct",
+        "Sens inverse"
+      ]
+    },
+    {
+      "field": "amenagement_cyclable_gauche",
+      "display_name": "Aménagement cyclable gauche",
+      "kind": "categorical",
+      "values": [
+        "Aménagement mixte hors voie verte",
+        "Bande cyclable",
+        "Goulotte ou rampe",
+        "Piste cyclable"
+      ]
+    },
+    {
+      "field": "amenagement_cyclable_droit",
+      "display_name": "Aménagement cyclable droit",
+      "kind": "categorical",
+      "values": [
+        "Aménagement mixte hors voie verte",
+        "Bande cyclable",
+        "Goulotte ou rampe",
+        "Piste cyclable"
+      ]
+    },
+    {
+      "field": "aire_de_retournement_dfci",
+      "display_name": "Aire de retournement DFCI",
+      "kind": "categorical",
+      "values": [
+        "Au moins une aire",
+        "Aucune",
+        "Plusieurs aires"
+      ]
+    },
+    {
+      "field": "gabarit_dfci",
+      "display_name": "Gabarit DFCI",
+      "kind": "categorical",
+      "values": [
+        "Poids lourd",
+        "Super poids lourd",
+        "Véhicule léger"
+      ]
+    },
+    {
+      "field": "nature_detaillee_dfci",
+      "display_name": "Nature détaillée DFCI",
+      "kind": "categorical",
+      "values": [
+        "Empierré",
+        "Goudron",
+        "Graviers",
+        "Pierres",
+        "Sable",
+        "Sol naturel"
+      ]
+    },
+    {
+      "field": "pente_maximale_dfci",
+      "display_name": "Pente maximale DFCI",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "piste_dfci_fosses",
+      "display_name": "Piste DFCI fossés",
+      "kind": "categorical",
+      "values": [
+        "Aucun",
+        "Fossé à droite",
+        "Fossé à gauche",
+        "Fossés à droite et à gauche"
+      ]
+    },
+    {
+      "field": "sens_de_circulation_dfci",
+      "display_name": "Sens de circulation DFCI",
+      "kind": "categorical",
+      "values": [
+        "Double sens",
+        "Sens direct",
+        "Sens inverse"
+      ]
+    },
+    {
+      "field": "vitesse_moyenne_dfci",
+      "display_name": "Vitesse moyenne DFCI",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "zone_de_croisement_dfci",
+      "display_name": "Zone de croisement DFCI",
+      "kind": "categorical",
+      "values": [
+        "Au moins une zone",
+        "Aucune",
+        "Plusieurs zones"
+      ]
+    },
+    {
+      "field": "categorie_dfci",
+      "display_name": "Catégorie DFCI",
+      "kind": "categorical",
+      "values": [
+        "1ère catégorie",
+        "2ème catégorie",
+        "3ème catégorie",
+        "Hors catégorie"
+      ]
+    },
+    {
+      "field": "vitesse_collaborative",
+      "display_name": "Vitesse collaborative",
+      "kind": "numeric",
+      "values": []
+    }
+  ],
+  "troncon_de_voie_ferree": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Funiculaire ou crémaillère",
+        "LGV",
+        "Métro",
+        "Sans objet",
+        "Tramway",
+        "Voie de service",
+        "Voie ferrée principale"
+      ]
+    },
+    {
+      "field": "position_par_rapport_au_sol",
+      "display_name": "Position par rapport au sol",
+      "kind": "categorical",
+      "values": [
+        "-1",
+        "-2",
+        "-3",
+        "-4",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "field": "largeur",
+      "display_name": "Largeur",
+      "kind": "categorical",
+      "values": [
+        "Etroite",
+        "Large",
+        "Normale"
+      ]
+    },
+    {
+      "field": "nombre_de_voies",
+      "display_name": "Nombre de voies",
+      "kind": "numeric",
+      "values": []
+    },
+    {
+      "field": "usage",
+      "display_name": "Usage",
+      "kind": "categorical",
+      "values": [
+        "Fret",
+        "Sans objet",
+        "Voyageur",
+        "Voyageur et fret",
+        "Vélo-rail"
+      ]
+    },
+    {
+      "field": "vitesse_maximale",
+      "display_name": "Vitesse maximale",
+      "kind": "numeric",
+      "values": []
+    }
+  ],
+  "troncon_hydrographique": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Aqueduc",
+        "Canal",
+        "Conduit buse",
+        "Conduit forcé",
+        "Delta",
+        "Ecoulement canalisé",
+        "Ecoulement endoréique",
+        "Ecoulement hyporhéique",
+        "Ecoulement karstique",
+        "Ecoulement naturel",
+        "Ecoulement phréatique",
+        "Estuaire",
+        "Glacier, névé",
+        "Inconnue",
+        "Lac",
+        "Lagon",
+        "Lagune",
+        "Mangrove",
+        "Marais",
+        "Mare",
+        "Plan d'eau de gravière",
+        "Plan d'eau de mine",
+        "Ravine",
+        "Retenue",
+        "Retenue-barrage",
+        "Retenue-bassin portuaire",
+        "Retenue-digue",
+        "Réservoir-bassin",
+        "Réservoir-bassin d'orage",
+        "Réservoir-bassin piscicole"
+      ]
+    },
+    {
+      "field": "etat_de_l_objet",
+      "display_name": "Etat de l'objet",
+      "kind": "categorical",
+      "values": [
+        "Disparu",
+        "En construction",
+        "En projet",
+        "En service"
+      ]
+    },
+    {
+      "field": "position_par_rapport_au_sol",
+      "display_name": "Position par rapport au sol",
+      "kind": "categorical",
+      "values": [
+        "-1",
+        "-2",
+        "0",
+        "1",
+        "2",
+        "Inconnue"
+      ]
+    },
+    {
+      "field": "persistance",
+      "display_name": "Persistance",
+      "kind": "categorical",
+      "values": [
+        "Ephémère",
+        "Inconnue",
+        "Intermittent",
+        "Permanent",
+        "Sec"
+      ]
+    },
+    {
+      "field": "origine",
+      "display_name": "Origine",
+      "kind": "categorical",
+      "values": [
+        "Artificielle",
+        "Inconnue",
+        "Naturelle aménagée",
+        "Naturelle non aménagée"
+      ]
+    },
+    {
+      "field": "sens_de_l_ecoulement",
+      "display_name": "Sens de l'écoulement",
+      "kind": "categorical",
+      "values": [
+        "Double sens",
+        "Inconnu",
+        "Sens direct",
+        "Sens inverse"
+      ]
+    },
+    {
+      "field": "classe_de_largeur",
+      "display_name": "Classe de largeur",
+      "kind": "categorical",
+      "values": [
+        "En attente de mise à jour",
+        "Entre 0 et 5 m",
+        "Entre 15 et 50 m",
+        "Entre 250 et 1250 m",
+        "Entre 5 et 15 m",
+        "Entre 50 et 250 m",
+        "Plus de 1250 m",
+        "Plus de 50 m",
+        "Sans objet"
+      ]
+    },
+    {
+      "field": "type_de_bras",
+      "display_name": "Type de bras",
+      "kind": "categorical",
+      "values": [
+        "Inconnu",
+        "Mort",
+        "Principal",
+        "Sans objet",
+        "Secondaire"
+      ]
+    },
+    {
+      "field": "inventaire_police_de_l_eau",
+      "display_name": "Inventaire police de l'eau",
+      "kind": "categorical",
+      "values": [
+        "Expertise en cours",
+        "Inscrit",
+        "Non inscrit"
+      ]
+    }
+  ],
+  "voie_nommee": [
+    {
+      "field": "source_voie_ban",
+      "display_name": "Source voie BAN",
+      "kind": "categorical",
+      "values": []
+    }
+  ],
+  "zone_d_activite_ou_d_interet": [
+    {
+      "field": "categorie",
+      "display_name": "Catégorie",
+      "kind": "categorical",
+      "values": [
+        "Administratif ou militaire",
+        "Culture et loisirs",
+        "Gestion des eaux",
+        "Industriel et commercial",
+        "Religieux",
+        "Santé",
+        "Science et enseignement",
+        "Sport"
+      ]
+    },
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Abri de montagne",
+        "Administration centrale de l'Etat",
+        "Aire d'accueil des gens du voyage",
+        "Aire de détente",
+        "Aquaculture",
+        "Autre service déconcentré de l'Etat",
+        "Autre équipement sportif",
+        "Autre établissement d'enseignement",
+        "Baignade surveillée",
+        "Borne",
+        "Borne frontière",
+        "Camp militaire non clos",
+        "Camping",
+        "Capitainerie",
+        "Carrière",
+        "Caserne",
+        "Caserne de pompiers",
+        "Centrale électrique",
+        "Centre de documentation",
+        "Centre équestre",
+        "Champ de tir",
+        "Collège",
+        "Complexe sportif couvert",
+        "Construction",
+        "Culte chrétien",
+        "Culte divers",
+        "Culte israélite",
+        "Culte musulman",
+        "Divers agricole",
+        "Divers commercial",
+        "Divers industriel",
+        "Divers public ou administratif",
+        "Déchèterie",
+        "Ecomusée",
+        "Elevage",
+        "Enceinte militaire",
+        "Enseignement primaire",
+        "Enseignement supérieur",
+        "Equipement de cyclisme",
+        "Espace public",
+        "Etablissement extraterritorial",
+        "Etablissement hospitalier",
+        "Etablissement pénitentiaire",
+        "Etablissement thermal",
+        "Gendarmerie",
+        "Golf",
+        "Habitation troglodytique",
+        "Haras",
+        "Hippodrome",
+        "Hébergement de loisirs",
+        "Hôpital",
+        "Hôtel de collectivité",
+        "Hôtel de département",
+        "Hôtel de région",
+        "Lycée",
+        "Mairie",
+        "Maison de retraite",
+        "Maison du parc",
+        "Maison forestière",
+        "Marais salant",
+        "Marché",
+        "Mine",
+        "Monument",
+        "Musée",
+        "Mégalithe",
+        "Office de tourisme",
+        "Ouvrage militaire",
+        "Palais de justice",
+        "Parc de loisirs",
+        "Parc des expositions",
+        "Parc zoologique",
+        "Patinoire",
+        "Piscine",
+        "Point de vue",
+        "Police",
+        "Poste",
+        "Préfecture",
+        "Préfecture de région",
+        "Refuge",
+        "Résidence autonomie",
+        "Salle de danse ou de jeux",
+        "Salle de spectacle ou conférence",
+        "Science",
+        "Sentier de découverte",
+        "Site d'escalade",
+        "Site de vol libre",
+        "Site skiable",
+        "Siège d'EPCI",
+        "Sous-préfecture",
+        "Sports en eaux vives",
+        "Sports mécaniques",
+        "Sports nautiques",
+        "Stade",
+        "Stand de tir",
+        "Station d'épuration",
+        "Station de pompage",
+        "Structure d'accueil pour personnes handicapées",
+        "Surveillance maritime",
+        "Tombeau",
+        "Université",
+        "Usine",
+        "Usine de production d'eau potable",
+        "Vestige archéologique",
+        "Zone industrielle"
+      ]
+    },
+    {
+      "field": "nature_detaillee",
+      "display_name": "Nature détaillée",
+      "kind": "categorical",
+      "values": [
+        "Abattoir",
+        "Abbatiale",
+        "Abbaye",
+        "Aciérie",
+        "Agence France travail",
+        "Agence postale",
+        "Aire d'atterrissage",
+        "Aire de bivouac",
+        "Aire de décollage",
+        "Aire de stockage",
+        "Aire naturelle",
+        "Allée couverte",
+        "Ambassade",
+        "Ancien abri militaire",
+        "Ancien couvent",
+        "Ancien monastère",
+        "Ancien prieuré",
+        "Ancienne abbaye",
+        "Ancienne carrière",
+        "Ancienne glacière",
+        "Ancienne mine",
+        "Aquarium",
+        "Arboretum",
+        "Archives départementales",
+        "Archives nationales",
+        "Archives régionales",
+        "Ardoisière",
+        "Arsenal",
+        "Arènes",
+        "Arènes couvertes",
+        "Atelier",
+        "Auberge de jeunesse",
+        "Autre commerce spécialisé",
+        "Ballastière",
+        "Base de loisirs",
+        "Base nautique",
+        "Basilique",
+        "Beffroi",
+        "Belvédère",
+        "Bergerie",
+        "Bibliothèque",
+        "Bibliothèque départementale",
+        "Bibliothèque nationale",
+        "Blockhaus",
+        "Borie",
+        "Borne cistercienne",
+        "Borne de sauveté",
+        "Borne milliaire",
+        "Boulodrome",
+        "Bowling",
+        "Bureau de poste",
+        "Bureau du port",
+        "CAF",
+        "CCAS",
+        "CPAM",
+        "Cabane",
+        "Cadole",
+        "Cairn",
+        "Camp romain",
+        "Canoë-kayak",
+        "Casino",
+        "Casse automobile",
+        "Cathédrale",
+        "Centrale géothermique",
+        "Centrale hydroélectrique",
+        "Centrale marémotrice",
+        "Centrale photovoltaïque flottante",
+        "Centrale photovoltaïque sol ou agrivoltaïque",
+        "Centrale photovoltaïque sur bâti",
+        "Centrale thermique",
+        "Centre aquatique",
+        "Centre commercial",
+        "Centre culturel",
+        "Centre d'enfouissement technique",
+        "Centre d'incendie et de secours",
+        "Centre d'information et d'orientation",
+        "Centre de détention",
+        "Centre de formation au sport",
+        "Centre de formation continue",
+        "Centre de formation d'apprentis",
+        "Centre de formation professionnelle agricole",
+        "Centre de loisirs",
+        "Centre de première intervention",
+        "Centre de recherche",
+        "Centre de secours",
+        "Centre de secours principal",
+        "Centre de secours privé",
+        "Centre de secours renforcé",
+        "Centre de semi-liberté",
+        "Centre de tri postal",
+        "Centre de vacances",
+        "Centre des finances publiques",
+        "Centre dramatique",
+        "Centre hospitalier régional",
+        "Centre informatique",
+        "Centre médical",
+        "Centre médico-social",
+        "Centre pénitentiaire",
+        "Centre pénitentiaire pour mineurs",
+        "Centre régional des œuvres universitaires et scolaires",
+        "Centre régional opérationnel de surveillance et de sauvetage",
+        "Chambre d'agriculture",
+        "Chambre de commerce et d'industrie",
+        "Chambre de métiers et de l'artisanat",
+        "Champignonnière",
+        "Chapelle",
+        "Chapelle funéraire",
+        "Char à voile",
+        "Chaufferie",
+        "Cimenterie",
+        "Cimetière animalier",
+        "Cinéma",
+        "Circuit automobile",
+        "Circuit de karting",
+        "Circuit divers",
+        "Cirque",
+        "Citadelle",
+        "Cité administrative",
+        "Cité scolaire",
+        "Collège annexe",
+        "Collège spécialisé",
+        "Collégiale",
+        "Colombier",
+        "Colonie de vacances",
+        "Commerce réparation véhicules",
+        "Commissariat",
+        "Commissariat central",
+        "Complexe sportif",
+        "Conseil de prud'hommes",
+        "Conservatoire",
+        "Conservatoire national",
+        "Consulat",
+        "Consulat honoraire",
+        "Coopérative",
+        "Cour criminelle départementale",
+        "Cour d'appel",
+        "Couvent",
+        "Cressonnière",
+        "Criée",
+        "Croix de Lorraine",
+        "Cromlech",
+        "Crèche",
+        "Crématorium",
+        "Discothèque",
+        "Distillerie",
+        "Dolmen",
+        "Donjon",
+        "Départ de ski de fond",
+        "Dépôt d'hydrocarbures",
+        "Dépôt de matériels",
+        "Dépôt de véhicules",
+        "Echelle",
+        "Ecole d'ingénieurs",
+        "Ecole de gendarmerie",
+        "Ecole de musique, danse ou arts plastiques",
+        "Ecole de plein air",
+        "Ecole de police",
+        "Ecole maternelle",
+        "Ecole primaire",
+        "Ecole élémentaire",
+        "Eglise",
+        "Eglise orthodoxe",
+        "Eglise simultanée",
+        "Elevage avicole",
+        "Elevage canin",
+        "Elevage piscicole",
+        "Elevage porcin",
+        "Enclos paroissial",
+        "Entrepôt",
+        "Esplanade",
+        "Etablissement de convalescence",
+        "Etablissement de réadaptation fonctionnelle",
+        "Etablissement et service d'aide par le travail",
+        "Etablissement pour déficient moteur",
+        "Etablissement pour enfants ou adolescents polyhandicapés",
+        "Fabrique",
+        "Faré",
+        "Ferme hydrolienne",
+        "Ferme pédagogique",
+        "Fonderie",
+        "Forestiers sapeurs",
+        "Fort",
+        "Four à chanvre",
+        "Four à chaux",
+        "Foyer d'accueil médicalisé",
+        "France services",
+        "Fromagerie",
+        "Gendarmerie aérienne",
+        "Gendarmerie d'autoroute",
+        "Gendarmerie de montagne",
+        "Gendarmerie mobile",
+        "Gendarmerie motorisée",
+        "Gendarmerie nautique",
+        "Gravière",
+        "Groupe scolaire",
+        "Groupement d'hélicoptères de la sécurité civile",
+        "Groupement de coopération sanitaire",
+        "Gymnase",
+        "Gîte d'étape",
+        "Gîte équestre",
+        "Halle",
+        "Haras national",
+        "Hydrospeed",
+        "Hôpital militaire",
+        "Hôpital spécialisé",
+        "Hôtel de département annexe",
+        "Hôtel de région annexe",
+        "Hôtel de ville",
+        "Imprimerie",
+        "Institut médico-éducatif",
+        "Institut pour déficients sensoriels",
+        "Institut thérapeutique éducatif et pédagogique",
+        "Institut universitaire de technologie",
+        "Institut universitaire professionnalisé",
+        "Institution européenne",
+        "Institution internationale",
+        "Jardin botanique",
+        "Jardin du souvenir",
+        "Jardin public",
+        "Jardins familiaux",
+        "Kiosque",
+        "Laboratoire",
+        "Laiterie",
+        "Lycée agricole",
+        "Lycée professionnel",
+        "Mairie annexe",
+        "Mairie d'arrondissement",
+        "Mairie de commune associée ou déléguée",
+        "Maison centrale",
+        "Maison d'arrêt",
+        "Maison d'enfants à caractère social",
+        "Maison de justice et du droit",
+        "Maison de l'Etat",
+        "Maison de la réserve",
+        "Maison de quartier",
+        "Maison de santé pour maladies mentales",
+        "Maison de site",
+        "Maison des associations",
+        "Maison du parc national",
+        "Maison du parc naturel marin",
+        "Maison du parc naturel régional",
+        "Maison départementale des personnes handicapées",
+        "Marché d'intérêt national",
+        "Marché d'intérêt régional",
+        "Marégraphe",
+        "Menhir",
+        "Menuiserie",
+        "Mine souterraine",
+        "Mini-golf",
+        "Minoterie",
+        "Mission locale",
+        "Monastère",
+        "Monument aux morts",
+        "Mosquée",
+        "Motte castrale",
+        "Motte féodale",
+        "Moulin à vent",
+        "Mutualité sociale agricole",
+        "Médiathèque",
+        "Mémorial",
+        "Observatoire",
+        "Observatoire ornithologique",
+        "Oppidum",
+        "Opéra",
+        "Oratoire",
+        "Ossuaire",
+        "Palais des congrès",
+        "Papeterie",
+        "Parc",
+        "Parc animalier",
+        "Parc d'activités tertiaires",
+        "Parc d'attractions",
+        "Parc résidentiel de loisirs",
+        "Parc éolien",
+        "Parvis",
+        "Pelote basque",
+        "Pente école",
+        "Pigeonnier",
+        "Piste de bicross",
+        "Piste de ski",
+        "Place",
+        "Plage concédée",
+        "Planche à voile",
+        "Plate-forme de compostage",
+        "Plate-forme de treuil",
+        "Plongée sous-marine",
+        "Point d'information famille",
+        "Point d'information jeunesse",
+        "Point d'information touristique",
+        "Police d'autoroute",
+        "Police municipale",
+        "Pont génois",
+        "Pont romain",
+        "Porte",
+        "Poste de gaz",
+        "Poste de pompage d'hydrocarbures",
+        "Poste saisonnier de gendarmerie",
+        "Practice",
+        "Prieuré",
+        "Promenade",
+        "Protection maternelle et infantile",
+        "Préfecture de département",
+        "Préfecture de département annexe",
+        "Préfecture de police",
+        "Préfecture maritime",
+        "Puits de mine",
+        "Pumptrack",
+        "Pépinière",
+        "Pêcherie",
+        "Raffinerie",
+        "Rafting",
+        "Refuge gardé",
+        "Refuge non gardé",
+        "Relais équestre",
+        "Restaurant scolaire",
+        "Restaurant universitaire",
+        "Restauration",
+        "Rhumerie",
+        "Résidence universitaire",
+        "Sablière",
+        "Salle de spectacle",
+        "Salle polyvalente",
+        "Sanatorium",
+        "Scierie",
+        "Section spécialisée",
+        "Sentier botanique",
+        "Sentier entomologique",
+        "Sentier sous-marin",
+        "Sentier écologique",
+        "Service Local d'Incendie et de Secours",
+        "Service départemental d'incendie et de secours",
+        "Service technique municipal",
+        "Site de bloc",
+        "Site de falaise",
+        "Siège annexe d'EPCI",
+        "Skatepark",
+        "Ski nautique",
+        "Sous-préfecture annexe",
+        "Square",
+        "Station d'épuration par filtre à roseaux",
+        "Station d'épuration par filtre à sable",
+        "Station d'épuration par lagunage",
+        "Statue",
+        "Stockage d'électricité",
+        "Stockage de gaz",
+        "Stèle",
+        "Sucrerie",
+        "Surf",
+        "Synagogue",
+        "Sémaphore",
+        "Table d'orientation",
+        "Temple bouddhiste",
+        "Temple hindouiste",
+        "Temple protestant",
+        "Terrain de manœuvre",
+        "Terrain de sport",
+        "Terrain militaire",
+        "Terrasse",
+        "Théâtre",
+        "Théâtre de plein air",
+        "Théâtre national",
+        "Théâtre romain",
+        "Tombe",
+        "Tombe de guerre du Commonwealth",
+        "Tribunal administratif",
+        "Tribunal de commerce",
+        "Tribunal de proximité",
+        "Tribunal judiciaire",
+        "Tribunal pour enfants",
+        "Trinquet",
+        "Tuilerie",
+        "Tumulus",
+        "Télégraphe Chappe",
+        "URSSAF",
+        "Unité d'instruction et d'intervention de la sécurité civile",
+        "Unité de formation et de recherche",
+        "Unité de méthanisation",
+        "Usine d'incinération",
+        "Usine élévatrice",
+        "Via ferrata",
+        "Village de vacances",
+        "Voile",
+        "Vélodrome",
+        "Zone artisanale",
+        "Zone commerciale",
+        "Zone d'activités"
+      ]
+    },
+    {
+      "field": "importance",
+      "display_name": "Importance",
+      "kind": "categorical",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    {
+      "field": "etat_de_l_objet",
+      "display_name": "Etat de l'objet services",
+      "kind": "categorical",
+      "values": [
+        "En construction",
+        "En projet",
+        "En service",
+        "Non exploité"
+      ]
+    }
+  ],
+  "zone_d_estran": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Graviers ou galets",
+        "Rocher",
+        "Sable"
+      ]
+    }
+  ],
+  "zone_d_habitation": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Château",
+        "Grange",
+        "Habitat temporaire",
+        "Lieu-dit habité",
+        "Moulin",
+        "Quartier",
+        "Ruines"
+      ]
+    },
+    {
+      "field": "nature_detaillee",
+      "display_name": "Nature détaillée",
+      "kind": "categorical",
+      "values": [
+        "Bergerie",
+        "Cabane",
+        "Carbet",
+        "Chalet",
+        "Château fort",
+        "Château ruiné",
+        "Eglise ruinée",
+        "Hôtel particulier",
+        "Immeuble",
+        "Lotissement",
+        "Quartier urbain",
+        "Résidence",
+        "Tour",
+        "Tour ruinée",
+        "Village détruit"
+      ]
+    },
+    {
+      "field": "importance",
+      "display_name": "Importance",
+      "kind": "categorical",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    }
+  ],
+  "zone_de_vegetation": [
+    {
+      "field": "nature",
+      "display_name": "Nature",
+      "kind": "categorical",
+      "values": [
+        "Bananeraie",
+        "Bois",
+        "Canne à sucre",
+        "Cocoteraie",
+        "Forêt fermée de conifères",
+        "Forêt fermée de feuillus",
+        "Forêt fermée mixte",
+        "Forêt ouverte",
+        "Haie",
+        "Houblonnière",
+        "Lande herbacée",
+        "Lande ligneuse",
+        "Mangrove",
+        "Peupleraie",
+        "Rizière",
+        "Verger",
+        "Vigne",
+        "Zone arborée"
+      ]
+    }
+  ]
+}

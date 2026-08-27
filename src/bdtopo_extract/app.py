@@ -15,7 +15,7 @@ import pandas as pd
 import streamlit as st
 from streamlit_searchbox import st_searchbox
 
-from bdtopo_extract import catalog, dsfr_theme, docs, extract, map_ui, territoire
+from bdtopo_extract import catalog, dsfr_theme, docs, extract, fields, map_ui, territoire
 from bdtopo_extract.territoire import fold as _fold
 
 st.set_page_config(page_title="BD Topo Extract", layout="wide")
@@ -31,6 +31,11 @@ def _get_bdtopo_layers():
 @st.cache_data(show_spinner="Chargement de la documentation des couches (bdtopoexplorer.ign.fr)...")
 def _get_docs():
     return docs.get_docs()
+
+
+@st.cache_data(show_spinner="Chargement des champs filtrables...")
+def _get_fields():
+    return fields.get_fields()
 
 
 def _zip_dir_bytes(dir_path: Path) -> bytes:
@@ -110,6 +115,39 @@ st.session_state.layers_df.loc[edited_layers.index, "Sélection"] = edited_layer
 
 selected_layers = st.session_state.layers_df[st.session_state.layers_df["Sélection"]].index.tolist()
 st.caption(f"{len(selected_layers)} couche(s) sélectionnée(s)")
+
+# --- Filtres attributaires par couche cochée ----------------------------
+fields_map = _get_fields()
+if "layer_filters" not in st.session_state:
+    st.session_state.layer_filters = {}  # {layer_name: [filter_dict, ...]}
+
+for layer_name in selected_layers:
+    layer_fields = fields_map.get(layer_name)
+    if not layer_fields:
+        continue  # couche sans champ filtrable connu
+    display_name = st.session_state.layers_df.loc[layer_name, "Couche"]
+    with st.expander(f"⚙ Filtres — {display_name}"):
+        layer_filter_list = []
+        for f in layer_fields:
+            if f["kind"] == "numeric":
+                c1, c2 = st.columns(2)
+                fmin = c1.number_input(
+                    f"{f['display_name']} ≥", value=None, key=f"filter_num_min_{layer_name}_{f['field']}"
+                )
+                fmax = c2.number_input(
+                    f"{f['display_name']} ≤", value=None, key=f"filter_num_max_{layer_name}_{f['field']}"
+                )
+                if fmin is not None or fmax is not None:
+                    layer_filter_list.append(
+                        {"field": f["field"], "kind": "numeric", "min": fmin, "max": fmax}
+                    )
+            elif f["kind"] == "categorical":
+                chosen = st.multiselect(
+                    f["display_name"], options=f["values"], key=f"filter_cat_{layer_name}_{f['field']}"
+                )
+                if chosen:
+                    layer_filter_list.append({"field": f["field"], "kind": "categorical", "values": chosen})
+        st.session_state.layer_filters[layer_name] = layer_filter_list
 
 # --- 2. Territoire -------------------------------------------------------
 st.subheader("2. Territoire")
@@ -220,6 +258,9 @@ if st.button("Extraire", disabled=not ready, type="primary"):
         status.write(f"Extraction de **{name}**...")
         try:
             gdf = extract.extract_layer(layers_catalog[name], territoire_obj, crs=crs or None)
+            layer_filters = st.session_state.layer_filters.get(name, [])
+            if layer_filters:
+                gdf = extract.apply_filters(gdf, layer_filters)
             results[name] = gdf
             status.write(f"{name} : {len(gdf)} entités ({gdf.attrs.get('extract_seconds')}s)")
         except Exception as exc:  # noqa: BLE001 - on affiche l'erreur, on continue les autres couches

@@ -45,6 +45,29 @@ def extract_layer(
     return gdf
 
 
+def apply_filters(gdf: gpd.GeoDataFrame, filters: list[dict]) -> gpd.GeoDataFrame:
+    """Applique des filtres attributaires (ET logique entre eux) à une couche déjà extraite.
+
+    Chaque filtre est un dict :
+      - numérique : {"field": str, "kind": "numeric", "min": float|None, "max": float|None}
+      - catégoriel : {"field": str, "kind": "categorical", "values": list[str]}
+    Un filtre sans borne/valeur renseignée est ignoré (pas de restriction).
+    """
+    for f in filters:
+        if f["field"] not in gdf.columns:
+            continue  # champ absent de cette édition/couche : filtre ignoré, pas d'erreur
+        if f["kind"] == "numeric":
+            if f.get("min") is not None:
+                gdf = gdf[gdf[f["field"]] >= f["min"]]
+            if f.get("max") is not None:
+                gdf = gdf[gdf[f["field"]] <= f["max"]]
+        elif f["kind"] == "categorical":
+            values = f.get("values")
+            if values:
+                gdf = gdf[gdf[f["field"]].isin(values)]
+    return gdf
+
+
 def write_layers(
     layer_results: dict[str, gpd.GeoDataFrame],
     output_dir: Path,
