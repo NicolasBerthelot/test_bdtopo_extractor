@@ -146,7 +146,7 @@ with col_left:
         label = f"{dot} {theme or 'Autre'} · {len(group)} couche(s)"
         if n_checked:
             label += f" — {n_checked} sélectionnée(s)"
-        with st.expander(label, expanded=bool(filter_query)):
+        with st.expander(label, expanded=bool(filter_query), key=f"theme_expander_{theme}"):
             st.markdown(
                 f'<div style="height:3px;background:{color};border-radius:2px;margin:-0.5rem 0 0.75rem 0;"></div>',
                 unsafe_allow_html=True,
