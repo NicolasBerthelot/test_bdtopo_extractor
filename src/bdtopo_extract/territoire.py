@@ -34,19 +34,23 @@ class Territoire:
     bbox: tuple[float, float, float, float]
 
 
-_ADMIN_GDF_MEMORY_CACHE: dict[str, gpd.GeoDataFrame] = {}
+# La couche communes fait ~480 Mo sur disque — largement plus en GeoDataFrame Python
+# (objets géométrie shapely, un par commune). La garder en mémoire pour toute la durée
+# de vie du process a dépassé la limite RAM de Streamlit Community Cloud (~1 Go).
+# Au lieu de ça : un index léger (code_insee, nom_officiel, SANS géométrie) reste en
+# mémoire pour la recherche, et resolve() ne lit qu'UNE ligne (celle demandée) à chaque
+# appel, depuis le cache disque local — jamais l'ensemble du jeu de données en mémoire.
+_SEARCH_INDEX_CACHE: dict[str, "pd.DataFrame"] = {}
 
 
-def _admin_gdf(kind: str) -> gpd.GeoDataFrame:
-    if kind in _ADMIN_GDF_MEMORY_CACHE:
-        return _ADMIN_GDF_MEMORY_CACHE[kind]
-
+def _local_cache_path(kind: str) -> Path:
+    """Télécharge (une seule fois par édition) et retourne le chemin du fichier
+    en cache local pour cette couche admin. Le fichier reste sur disque uniquement :
+    on ne le charge jamais en entier en mémoire après coup (cf. commentaire ci-dessus)."""
     layer_name = ADMIN_LAYER_BY_KIND[kind]
     cache_path = CACHE_DIR / f"admin_{layer_name}.gpkg"
     if cache_path.exists():
-        gdf = gpd.read_file(cache_path)
-        _ADMIN_GDF_MEMORY_CACHE[kind] = gdf
-        return gdf
+        return cache_path
 
     layers = catalog.get_catalog("admin-express-cog")
     if layer_name not in layers:
@@ -56,8 +60,17 @@ def _admin_gdf(kind: str) -> gpd.GeoDataFrame:
 
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
     gdf.to_file(cache_path, driver="GPKG")
-    _ADMIN_GDF_MEMORY_CACHE[kind] = gdf
-    return gdf
+    del gdf  # ne pas garder ce GeoDataFrame complet en mémoire au-delà de l'écriture
+    return cache_path
+
+
+def _search_index(kind: str) -> "pd.DataFrame":
+    if kind in _SEARCH_INDEX_CACHE:
+        return _SEARCH_INDEX_CACHE[kind]
+    cache_path = _local_cache_path(kind)
+    df = pyogrio.read_dataframe(cache_path, columns=["code_insee", "nom_officiel"], read_geometry=False)
+    _SEARCH_INDEX_CACHE[kind] = df
+    return df
 
 
 def _match(gdf: gpd.GeoDataFrame, code_ou_nom: str) -> gpd.GeoDataFrame:
@@ -83,26 +96,26 @@ def _match(gdf: gpd.GeoDataFrame, code_ou_nom: str) -> gpd.GeoDataFrame:
     return gdf[noms_folded.isin(close)]
 
 
-def search(kind: str, query: str | None = None, limit: int | None = None) -> gpd.GeoDataFrame:
+def search(kind: str, query: str | None = None, limit: int | None = None) -> "pd.DataFrame":
     """Liste les territoires d'un type donné, filtrés par code ou nom (recherche partielle,
     insensible aux accents, tolérante aux fautes de frappe). `limit` plafonne le nombre de
-    résultats (utile pour une autocomplétion)."""
-    gdf = _admin_gdf(kind)
+    résultats (utile pour une autocomplétion). Ne charge jamais les géométries en mémoire."""
+    index = _search_index(kind)
     if not query:
-        results = gdf[["code_insee", "nom_officiel"]].sort_values("nom_officiel")
+        results = index.sort_values("nom_officiel")
     else:
-        matches = _match(gdf, query)
-        results = matches[["code_insee", "nom_officiel"]].sort_values("nom_officiel")
+        results = _match(index, query).sort_values("nom_officiel")
     return results.head(limit) if limit else results
 
 
 def resolve(kind: str, code_ou_nom: str) -> Territoire:
     """Résout un territoire administratif (region/departement/commune) en géométrie.
 
-    Lève une erreur explicite si aucun résultat ou si le résultat est ambigu.
+    Lève une erreur explicite si aucun résultat ou si le résultat est ambigu. Ne lit
+    que la géométrie de la ligne demandée (pas toute la couche) depuis le cache disque.
     """
-    gdf = _admin_gdf(kind)
-    matches = _match(gdf, code_ou_nom)
+    index = _search_index(kind)
+    matches = _match(index, code_ou_nom)
 
     if len(matches) == 0:
         raise ValueError(f"Aucun {kind} trouvé pour {code_ou_nom!r}")
@@ -110,9 +123,17 @@ def resolve(kind: str, code_ou_nom: str) -> Territoire:
         noms = ", ".join(f"{r.nom_officiel} ({r.code_insee})" for r in matches.itertuples())
         raise ValueError(f"Plusieurs {kind} correspondent à {code_ou_nom!r} : {noms}")
 
-    row = matches.iloc[0]
-    geometry = row.geometry
-    return Territoire(label=f"{row.nom_officiel} ({row.code_insee})", geometry=geometry, bbox=geometry.bounds)
+    code = matches.iloc[0]["code_insee"]
+    nom = matches.iloc[0]["nom_officiel"]
+
+    cache_path = _local_cache_path(kind)
+    escaped_code = str(code).replace("'", "''")
+    row_gdf = pyogrio.read_dataframe(cache_path, where=f"code_insee = '{escaped_code}'")
+    if len(row_gdf) == 0:
+        raise ValueError(f"{kind} {code!r} trouvé dans l'index mais introuvable dans le cache géométrique")
+
+    geometry = row_gdf.iloc[0].geometry
+    return Territoire(label=f"{nom} ({code})", geometry=geometry, bbox=geometry.bounds)
 
 
 def union(territoires: list[Territoire]) -> Territoire | None:
