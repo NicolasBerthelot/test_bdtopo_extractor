@@ -52,7 +52,7 @@ py -3.12 -m venv .venv   # ou le chemin complet vers python.exe si l'alias Windo
 .\.venv\Scripts\streamlit.exe run .\src\bdtopo_extract\app.py
 ```
 
-Ouvre une page dans le navigateur avec : les 58 couches groupées par thème (section repliable par thème, couleur + puce dédiées, description complète non tronquée), recherche + choix du territoire (région/département/commune/bbox/France entière), options de format et de CRS, puis bouton "Extraire" avec téléchargement direct du résultat.
+Ouvre une page dans le navigateur, en deux colonnes : à gauche les couches (groupées par thème, section repliable par thème, couleur + puce dédiées, description complète non tronquée) et leurs filtres attributaires ; à droite la sélection territoriale (recherche + carte). Par défaut (France entière ou aucune sélection encore faite), la carte affiche le contour de la France métropolitaine. En dessous, sur toute la largeur : options de format/CRS puis bouton "Extraire" avec téléchargement direct du résultat.
 
 ## Fonctionnement
 

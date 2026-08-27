@@ -28,16 +28,22 @@ def _base_map() -> folium.Map:
     return m
 
 
-def render_territoire_map(territoire, key: str):
-    """Affiche la carte, avec le territoire résolu mis en surbrillance si présent."""
+def render_territoire_map(territoire, key: str, fit_bounds: bool = True):
+    """Affiche la carte, avec le territoire résolu mis en surbrillance si présent.
+
+    fit_bounds=False garde le cadrage par défaut (France métropolitaine) plutôt que
+    de recadrer sur l'emprise du territoire — utile pour le contour "France entière"
+    par défaut, dont la bbox englobe aussi les DROM (vue mondiale peu lisible sinon).
+    """
     m = _base_map()
     if territoire is not None and territoire.geometry is not None:
         folium.GeoJson(
             mapping(territoire.geometry),
             style_function=lambda _: {"color": "#e1000f", "weight": 2, "fillColor": "#e1000f", "fillOpacity": 0.15},
         ).add_to(m)
-        xmin, ymin, xmax, ymax = territoire.bbox
-        m.fit_bounds([[ymin, xmin], [ymax, xmax]])
+        if fit_bounds:
+            xmin, ymin, xmax, ymax = territoire.bbox
+            m.fit_bounds([[ymin, xmin], [ymax, xmax]])
     return st_folium(m, height=420, use_container_width=True, key=key, returned_objects=[])
 
 

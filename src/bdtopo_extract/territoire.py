@@ -146,3 +146,24 @@ def from_bbox(xmin: float, ymin: float, xmax: float, ymax: float) -> Territoire:
 def france() -> Territoire | None:
     """France entière : pas de filtre spatial."""
     return None
+
+
+_FRANCE_GEOMETRY_CACHE: Territoire | None = None
+
+
+def france_geometry() -> Territoire:
+    """Contour France entière (union de toutes les régions, y compris DROM), pour
+    affichage carte uniquement — ne pas utiliser pour filtrer une extraction (voir
+    `france()`, qui renvoie None pour ne pas imposer de découpage inutile sur un
+    territoire "France entière").
+
+    Géométrie simplifiée avant l'union (tolérance ~1km, indolore à l'échelle du
+    pays) : l'union brute des 18 régions prend ~40s, contre ~6s simplifiée —
+    calculé une fois puis mis en cache pour le reste du run.
+    """
+    global _FRANCE_GEOMETRY_CACHE
+    if _FRANCE_GEOMETRY_CACHE is None:
+        gdf = _admin_gdf("region")
+        geometry = gdf.geometry.simplify(0.01).union_all()
+        _FRANCE_GEOMETRY_CACHE = Territoire(label="France entière", geometry=geometry, bbox=geometry.bounds)
+    return _FRANCE_GEOMETRY_CACHE

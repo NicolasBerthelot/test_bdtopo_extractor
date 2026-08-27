@@ -64,8 +64,10 @@ def _zip_dir_bytes(dir_path: Path) -> bytes:
 layers_catalog = _get_bdtopo_layers()
 st.caption(f"Édition BD Topo : {catalog.get_edition('bdtopo')}")
 
+col_left, col_right = st.columns([1, 1])
+
 # --- 1. Couches ---------------------------------------------------------
-st.subheader("1. Couches")
+col_left.subheader("1. Couches")
 docs_map = _get_docs()
 
 
@@ -84,123 +86,126 @@ def _build_layers_df() -> pd.DataFrame:
     return pd.DataFrame(rows).set_index("layer_id")
 
 
-if "layers_df" not in st.session_state:
-    st.session_state.layers_df = _build_layers_df()
+with col_left:
+    if "layers_df" not in st.session_state:
+        st.session_state.layers_df = _build_layers_df()
 
-for _name in st.session_state.layers_df.index:
-    st.session_state.setdefault(f"layer_cb_{_name}", bool(st.session_state.layers_df.loc[_name, "Sélection"]))
-
-btn_group, _spacer = st.columns([1, 3])
-b1, b2 = btn_group.columns(2)
-if b1.button("Tout cocher"):
     for _name in st.session_state.layers_df.index:
-        st.session_state[f"layer_cb_{_name}"] = True
-if b2.button("Tout décocher"):
-    for _name in st.session_state.layers_df.index:
-        st.session_state[f"layer_cb_{_name}"] = False
-filter_query = st.text_input(
-    "Filtrer (nom, thème, description)", label_visibility="collapsed", placeholder="Filtrer (nom, thème, description)"
-)
+        st.session_state.setdefault(f"layer_cb_{_name}", bool(st.session_state.layers_df.loc[_name, "Sélection"]))
 
-layers_view = st.session_state.layers_df
-if filter_query:
-    q = _fold(filter_query)
-    mask = (
-        layers_view["Couche"].map(_fold).str.contains(q, na=False)
-        | layers_view["Thème"].map(_fold).str.contains(q, na=False)
-        | layers_view["Description"].map(_fold).str.contains(q, na=False)
+    btn_group, _spacer = st.columns([1, 3])
+    b1, b2 = btn_group.columns(2)
+    if b1.button("Tout cocher"):
+        for _name in st.session_state.layers_df.index:
+            st.session_state[f"layer_cb_{_name}"] = True
+    if b2.button("Tout décocher"):
+        for _name in st.session_state.layers_df.index:
+            st.session_state[f"layer_cb_{_name}"] = False
+    filter_query = st.text_input(
+        "Filtrer (nom, thème, description)",
+        label_visibility="collapsed",
+        placeholder="Filtrer (nom, thème, description)",
     )
-    layers_view = layers_view[mask]
 
-# Groupé par thème (couleur + puce), plutôt qu'un tableau plat : évite le texte
-# tronqué et la colonne "Sélection" disproportionnée d'un data_editor classique.
-for theme, group in layers_view.groupby("Thème", sort=True):
-    color, dot = THEME_STYLE.get(theme, DEFAULT_THEME_STYLE)
-    n_checked = sum(st.session_state.get(f"layer_cb_{n}", False) for n in group.index)
-    label = f"{dot} {theme or 'Autre'} · {len(group)} couche(s)"
-    if n_checked:
-        label += f" — {n_checked} sélectionnée(s)"
-    with st.expander(label, expanded=bool(filter_query)):
-        st.markdown(
-            f'<div style="height:3px;background:{color};border-radius:2px;margin:-0.5rem 0 0.75rem 0;"></div>',
-            unsafe_allow_html=True,
+    layers_view = st.session_state.layers_df
+    if filter_query:
+        q = _fold(filter_query)
+        mask = (
+            layers_view["Couche"].map(_fold).str.contains(q, na=False)
+            | layers_view["Thème"].map(_fold).str.contains(q, na=False)
+            | layers_view["Description"].map(_fold).str.contains(q, na=False)
         )
-        for name, row in group.iterrows():
-            st.checkbox(row["Couche"], key=f"layer_cb_{name}")
-            caption = row["Description"] or "Pas de description disponible."
-            if row["Doc"]:
-                caption += f" [↗ documentation complète]({row['Doc']})"
-            st.caption(caption)
+        layers_view = layers_view[mask]
 
-for _name in st.session_state.layers_df.index:
-    st.session_state.layers_df.loc[_name, "Sélection"] = st.session_state.get(f"layer_cb_{_name}", False)
+    # Groupé par thème (couleur + puce), plutôt qu'un tableau plat : évite le texte
+    # tronqué et la colonne "Sélection" disproportionnée d'un data_editor classique.
+    for theme, group in layers_view.groupby("Thème", sort=True):
+        color, dot = THEME_STYLE.get(theme, DEFAULT_THEME_STYLE)
+        n_checked = sum(st.session_state.get(f"layer_cb_{n}", False) for n in group.index)
+        label = f"{dot} {theme or 'Autre'} · {len(group)} couche(s)"
+        if n_checked:
+            label += f" — {n_checked} sélectionnée(s)"
+        with st.expander(label, expanded=bool(filter_query)):
+            st.markdown(
+                f'<div style="height:3px;background:{color};border-radius:2px;margin:-0.5rem 0 0.75rem 0;"></div>',
+                unsafe_allow_html=True,
+            )
+            for name, row in group.iterrows():
+                st.checkbox(row["Couche"], key=f"layer_cb_{name}")
+                caption = row["Description"] or "Pas de description disponible."
+                if row["Doc"]:
+                    caption += f" [↗ documentation complète]({row['Doc']})"
+                st.caption(caption)
 
-selected_layers = st.session_state.layers_df[st.session_state.layers_df["Sélection"]].index.tolist()
-st.caption(f"{len(selected_layers)} couche(s) sélectionnée(s)")
+    for _name in st.session_state.layers_df.index:
+        st.session_state.layers_df.loc[_name, "Sélection"] = st.session_state.get(f"layer_cb_{_name}", False)
 
-# --- Filtres attributaires par couche cochée ----------------------------
-fields_map = _get_fields()
-if "layer_filters" not in st.session_state:
-    st.session_state.layer_filters = {}  # {layer_name: [filter_dict, ...]}
+    selected_layers = st.session_state.layers_df[st.session_state.layers_df["Sélection"]].index.tolist()
+    st.caption(f"{len(selected_layers)} couche(s) sélectionnée(s)")
 
-for layer_name in selected_layers:
-    layer_fields = fields_map.get(layer_name)
-    if not layer_fields:
-        continue  # couche sans champ filtrable connu
-    display_name = st.session_state.layers_df.loc[layer_name, "Couche"]
-    with st.expander(f"⚙ Filtres — {display_name}"):
-        layer_filter_list = []
-        for f in layer_fields:
-            if f["kind"] == "numeric":
-                c1, c2 = st.columns(2)
-                fmin = c1.number_input(
-                    f"{f['display_name']} ≥", value=None, key=f"filter_num_min_{layer_name}_{f['field']}"
-                )
-                fmax = c2.number_input(
-                    f"{f['display_name']} ≤", value=None, key=f"filter_num_max_{layer_name}_{f['field']}"
-                )
-                if fmin is not None or fmax is not None:
-                    layer_filter_list.append(
-                        {"field": f["field"], "kind": "numeric", "min": fmin, "max": fmax}
+    # --- Filtres attributaires par couche cochée ------------------------
+    fields_map = _get_fields()
+    if "layer_filters" not in st.session_state:
+        st.session_state.layer_filters = {}  # {layer_name: [filter_dict, ...]}
+
+    for layer_name in selected_layers:
+        layer_fields = fields_map.get(layer_name)
+        if not layer_fields:
+            continue  # couche sans champ filtrable connu
+        display_name = st.session_state.layers_df.loc[layer_name, "Couche"]
+        with st.expander(f"⚙ Filtres — {display_name}"):
+            layer_filter_list = []
+            for f in layer_fields:
+                if f["kind"] == "numeric":
+                    c1, c2 = st.columns(2)
+                    fmin = c1.number_input(
+                        f"{f['display_name']} ≥", value=None, key=f"filter_num_min_{layer_name}_{f['field']}"
                     )
-            elif f["kind"] == "categorical":
-                chosen = st.multiselect(
-                    f["display_name"], options=f["values"], key=f"filter_cat_{layer_name}_{f['field']}"
-                )
-                if chosen:
-                    layer_filter_list.append({"field": f["field"], "kind": "categorical", "values": chosen})
-        st.session_state.layer_filters[layer_name] = layer_filter_list
+                    fmax = c2.number_input(
+                        f"{f['display_name']} ≤", value=None, key=f"filter_num_max_{layer_name}_{f['field']}"
+                    )
+                    if fmin is not None or fmax is not None:
+                        layer_filter_list.append(
+                            {"field": f["field"], "kind": "numeric", "min": fmin, "max": fmax}
+                        )
+                elif f["kind"] == "categorical":
+                    chosen = st.multiselect(
+                        f["display_name"], options=f["values"], key=f"filter_cat_{layer_name}_{f['field']}"
+                    )
+                    if chosen:
+                        layer_filter_list.append({"field": f["field"], "kind": "categorical", "values": chosen})
+            st.session_state.layer_filters[layer_name] = layer_filter_list
 
 # --- 2. Territoire -------------------------------------------------------
-st.subheader("2. Territoire")
-kind = st.radio(
-    "Type de territoire",
-    ["France entière", "Territoires", "Bbox"],
-    horizontal=True,
-)
+with col_right:
+    st.subheader("2. Territoire")
+    kind = st.radio(
+        "Type de territoire",
+        ["France entière", "Territoires", "Bbox"],
+        horizontal=True,
+    )
 
-territoire_obj = None
-TERRITOIRE_KIND_LABEL = {"region": "région", "departement": "département", "commune": "commune"}
+    territoire_obj = None
+    TERRITOIRE_KIND_LABEL = {"region": "région", "departement": "département", "commune": "commune"}
 
-if "selected_territoires" not in st.session_state:
-    st.session_state.selected_territoires = []  # list[(kind_key, code_insee, label)]
+    if "selected_territoires" not in st.session_state:
+        st.session_state.selected_territoires = []  # list[(kind_key, code_insee, label)]
 
+    def _multi_kind_search(searchterm: str):
+        if len(searchterm) < 3:
+            return []
+        options = []
+        for kind_key, kind_label in TERRITOIRE_KIND_LABEL.items():
+            for r in territoire.search(kind_key, searchterm, limit=8).itertuples():
+                options.append((f"{r.nom_officiel} ({r.code_insee}) — {kind_label}", (kind_key, r.code_insee)))
+        return options
 
-def _multi_kind_search(searchterm: str):
-    if len(searchterm) < 3:
-        return []
-    options = []
-    for kind_key, kind_label in TERRITOIRE_KIND_LABEL.items():
-        for r in territoire.search(kind_key, searchterm, limit=8).itertuples():
-            options.append((f"{r.nom_officiel} ({r.code_insee}) — {kind_label}", (kind_key, r.code_insee)))
-    return options
-
-
-if kind == "France entière":
-    st.warning("Sans filtre spatial : le volume transféré peut être important selon les couches choisies.")
-elif kind == "Territoires":
-    col_form, col_map = st.columns([1, 2])
-    with col_form:
+    # Carte affichée dans chaque branche : par défaut (France entière, ou aucune
+    # sélection encore faite), on montre le contour du pays pour se repérer.
+    if kind == "France entière":
+        st.warning("Sans filtre spatial : le volume transféré peut être important selon les couches choisies.")
+        map_ui.render_territoire_map(territoire.france_geometry(), key="map_france", fit_bounds=False)
+    elif kind == "Territoires":
         picked = st_searchbox(
             _multi_kind_search,
             key="territoire_searchbox",
@@ -223,28 +228,27 @@ elif kind == "Territoires":
                 st.session_state.selected_territoires.pop(i)
                 st.rerun()
 
-    resolved = [territoire.resolve(k, c) for k, c, _ in st.session_state.selected_territoires]
-    territoire_obj = territoire.union(resolved)
+        resolved = [territoire.resolve(k, c) for k, c, _ in st.session_state.selected_territoires]
+        territoire_obj = territoire.union(resolved)
 
-    with col_map:
-        map_ui.render_territoire_map(territoire_obj, key="map_multi")
-elif kind == "Bbox":
-    for bbox_key in ("bbox_xmin", "bbox_ymin", "bbox_xmax", "bbox_ymax"):
-        st.session_state.setdefault(bbox_key, 0.0)
+        if territoire_obj:
+            map_ui.render_territoire_map(territoire_obj, key="map_multi")
+        else:
+            map_ui.render_territoire_map(territoire.france_geometry(), key="map_multi", fit_bounds=False)
+    elif kind == "Bbox":
+        for bbox_key in ("bbox_xmin", "bbox_ymin", "bbox_xmax", "bbox_ymax"):
+            st.session_state.setdefault(bbox_key, 0.0)
 
-    col_form, col_map = st.columns([1, 2])
-    with col_map:
         draw_result = map_ui.render_bbox_map(key="bbox_map")
-    drawing = draw_result.get("last_active_drawing") if draw_result else None
-    if drawing:
-        ring = drawing["geometry"]["coordinates"][0]
-        lngs, lats = [c[0] for c in ring], [c[1] for c in ring]
-        st.session_state["bbox_xmin"] = min(lngs)
-        st.session_state["bbox_ymin"] = min(lats)
-        st.session_state["bbox_xmax"] = max(lngs)
-        st.session_state["bbox_ymax"] = max(lats)
+        drawing = draw_result.get("last_active_drawing") if draw_result else None
+        if drawing:
+            ring = drawing["geometry"]["coordinates"][0]
+            lngs, lats = [c[0] for c in ring], [c[1] for c in ring]
+            st.session_state["bbox_xmin"] = min(lngs)
+            st.session_state["bbox_ymin"] = min(lats)
+            st.session_state["bbox_xmax"] = max(lngs)
+            st.session_state["bbox_ymax"] = max(lats)
 
-    with col_form:
         st.caption("Dessine un rectangle sur la carte, ou saisis les coordonnées (EPSG:4326).")
         c1, c2 = st.columns(2)
         xmin = c1.number_input("xmin", key="bbox_xmin", format="%.6f")
