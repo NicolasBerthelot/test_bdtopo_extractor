@@ -18,6 +18,21 @@ from streamlit_searchbox import st_searchbox
 from bdtopo_extract import catalog, dsfr_theme, docs, extract, fields, map_ui, territoire
 from bdtopo_extract.territoire import fold as _fold
 
+# Un repère visuel par thème (couleur + puce emoji, utilisable dans un label
+# d'expander qui ne rend pas de HTML) — couvre les 9 thèmes connus de la BD Topo.
+THEME_STYLE = {
+    "Administratif": ("#2A2A2A", "⚫"),
+    "Adresses": ("#E4A11B", "🟠"),
+    "Bâti": ("#8D533E", "🟤"),
+    "Hydrographie": ("#417DC4", "🔵"),
+    "Lieux nommés": ("#8B8B8B", "⚪"),
+    "Occupation du sol": ("#68A532", "🟢"),
+    "Services et activités": ("#A558A0", "🟣"),
+    "Transport": ("#D4B106", "🟡"),
+    "Zones réglementées": ("#CE0500", "🔴"),
+}
+DEFAULT_THEME_STYLE = ("#8B8B8B", "⚪")
+
 st.set_page_config(page_title="BD Topo Extract", layout="wide")
 dsfr_theme.inject()
 st.title("Extraction BD Topo (IGN)")
@@ -72,14 +87,17 @@ def _build_layers_df() -> pd.DataFrame:
 if "layers_df" not in st.session_state:
     st.session_state.layers_df = _build_layers_df()
 
+for _name in st.session_state.layers_df.index:
+    st.session_state.setdefault(f"layer_cb_{_name}", bool(st.session_state.layers_df.loc[_name, "Sélection"]))
+
 btn_group, _spacer = st.columns([1, 3])
 b1, b2 = btn_group.columns(2)
 if b1.button("Tout cocher"):
-    st.session_state.layers_df["Sélection"] = True
-    st.session_state.pop("layers_editor", None)
+    for _name in st.session_state.layers_df.index:
+        st.session_state[f"layer_cb_{_name}"] = True
 if b2.button("Tout décocher"):
-    st.session_state.layers_df["Sélection"] = False
-    st.session_state.pop("layers_editor", None)
+    for _name in st.session_state.layers_df.index:
+        st.session_state[f"layer_cb_{_name}"] = False
 filter_query = st.text_input(
     "Filtrer (nom, thème, description)", label_visibility="collapsed", placeholder="Filtrer (nom, thème, description)"
 )
@@ -94,24 +112,28 @@ if filter_query:
     )
     layers_view = layers_view[mask]
 
-edited_layers = st.data_editor(
-    layers_view,
-    key="layers_editor",
-    hide_index=True,
-    height=420,
-    use_container_width=True,
-    column_order=["Sélection", "Couche", "Thème", "Description", "Doc"],
-    column_config={
-        "Sélection": st.column_config.CheckboxColumn("Sélection"),
-        "Couche": st.column_config.TextColumn("Couche", disabled=True),
-        "Thème": st.column_config.TextColumn("Thème", disabled=True),
-        "Description": st.column_config.TextColumn("Description", disabled=True, width="large"),
-        "Doc": st.column_config.LinkColumn("Doc", display_text="↗", disabled=True),
-    },
-)
-# Ré-injecte les éditions (limitées aux lignes visibles si un filtre est actif)
-# dans la source de vérité complète, sans perdre les cases cochées hors filtre.
-st.session_state.layers_df.loc[edited_layers.index, "Sélection"] = edited_layers["Sélection"]
+# Groupé par thème (couleur + puce), plutôt qu'un tableau plat : évite le texte
+# tronqué et la colonne "Sélection" disproportionnée d'un data_editor classique.
+for theme, group in layers_view.groupby("Thème", sort=True):
+    color, dot = THEME_STYLE.get(theme, DEFAULT_THEME_STYLE)
+    n_checked = sum(st.session_state.get(f"layer_cb_{n}", False) for n in group.index)
+    label = f"{dot} {theme or 'Autre'} · {len(group)} couche(s)"
+    if n_checked:
+        label += f" — {n_checked} sélectionnée(s)"
+    with st.expander(label, expanded=bool(filter_query)):
+        st.markdown(
+            f'<div style="height:3px;background:{color};border-radius:2px;margin:-0.5rem 0 0.75rem 0;"></div>',
+            unsafe_allow_html=True,
+        )
+        for name, row in group.iterrows():
+            st.checkbox(row["Couche"], key=f"layer_cb_{name}")
+            caption = row["Description"] or "Pas de description disponible."
+            if row["Doc"]:
+                caption += f" [↗ documentation complète]({row['Doc']})"
+            st.caption(caption)
+
+for _name in st.session_state.layers_df.index:
+    st.session_state.layers_df.loc[_name, "Sélection"] = st.session_state.get(f"layer_cb_{_name}", False)
 
 selected_layers = st.session_state.layers_df[st.session_state.layers_df["Sélection"]].index.tolist()
 st.caption(f"{len(selected_layers)} couche(s) sélectionnée(s)")

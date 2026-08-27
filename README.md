@@ -52,7 +52,7 @@ py -3.12 -m venv .venv   # ou le chemin complet vers python.exe si l'alias Windo
 .\.venv\Scripts\streamlit.exe run .\src\bdtopo_extract\app.py
 ```
 
-Ouvre une page dans le navigateur avec : sélection multiple des couches, recherche + choix du territoire (région/département/commune/bbox/France entière), options de format et de CRS, puis bouton "Extraire" avec téléchargement direct du résultat.
+Ouvre une page dans le navigateur avec : les 58 couches groupées par thème (section repliable par thème, couleur + puce dédiées, description complète non tronquée), recherche + choix du territoire (région/département/commune/bbox/France entière), options de format et de CRS, puis bouton "Extraire" avec téléchargement direct du résultat.
 
 ## Fonctionnement
 
